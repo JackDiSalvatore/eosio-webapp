@@ -2,7 +2,7 @@
 
 Under Construction...
 
-[View App](https://git.heroku.com/eosio-webapp.git)
+[View App](https://eosio-webapp.herokuapp.com/)
 
 ### Install
 `yarn install`
