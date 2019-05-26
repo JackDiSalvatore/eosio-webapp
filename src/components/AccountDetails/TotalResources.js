@@ -17,7 +17,7 @@ class TotalResources extends Component {
 
     render() {
         //const { }
-        const { classes, accountInfo } = this.props;
+        const { accountInfo } = this.props;
 
         // Self Delegated Resources
         var selfResourcesCPU = 0.0000
