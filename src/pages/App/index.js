@@ -18,7 +18,7 @@ import AccountSearch from '../../components/AccountSearch';
 // Endpoints;
 //const localNet = 'http://localhost:888';
 //const jungleTestNet = 'https://jungle2.cryptolions.io:443'
-const mainNet = 'http://bp.cryptolions.io:8888';
+const mainNet = 'https://api.eosdetroit.io:443';
 //const mainNetBackup = 'http://api.cypherglass.com:8888';
 const endpoint = mainNet;
 
