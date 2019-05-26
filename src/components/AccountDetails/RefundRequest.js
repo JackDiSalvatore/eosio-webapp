@@ -18,7 +18,7 @@ class RefundRequest extends Component {
 
     render() {
         //const { }
-        const { classes, accountInfo } = this.props;
+        const { accountInfo } = this.props;
 
         // Refunding
         var requestTime = null;
@@ -27,11 +27,11 @@ class RefundRequest extends Component {
         var totalRefund = '0.0000 EOS';
 
         if (accountInfo.refund_request) {
-          requestTime = accountInfo.refund_request.request_time;
-          refundRequestCPU = accountInfo.refund_request.cpu_amount;
-          refundRequestNET = accountInfo.refund_request.net_amount;
-          totalRefund = parseFloat(new String(refundRequestCPU).split(' ')[0])
-                        + parseFloat(new String(refundRequestNET).split(' ')[0]);
+          requestTime = accountInfo.refund_request.request_time
+          refundRequestCPU = accountInfo.refund_request.cpu_amount
+          refundRequestNET = accountInfo.refund_request.net_amount
+          totalRefund = parseFloat(refundRequestCPU.split(' ')[0])
+                        + parseFloat(refundRequestNET.split(' ')[0])
         }
 
         return (
