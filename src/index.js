@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './pages/App';
 import * as serviceWorker from './serviceWorker';
 
@@ -9,18 +8,19 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			main: "#0244FF", // ?
-			contrastText: "#000" // Black
+			main: "#000", // Black
+			contrastText: "#8DFFA9" // Green
 		},
 		secondary: {
 			main: "#FF5B3F", // Orange
-			contrastText: "#fff"
-		}
+			contrastText: "#00f"
+		},
+		type: 'dark',
 	},
 	typography: {
 		// Sets the font throughout the application.  Requires using Material UI typography component.
-		fontFamily: ["Proxima Nova Lt", "Nexa", "NexaHeavy", "Roboto"].join(",")
-	}
+		fontFamily: ["Exo2Regular", "Roboto"].join(",")
+	},
 });
 
 ReactDOM.render(

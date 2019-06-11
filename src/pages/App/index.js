@@ -3,7 +3,7 @@ import { JsonRpc, RpcError } from 'eosjs';
 
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+
 //import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 
 // Components
 import AccountDetails from '../../components/AccountDetails/AccountDetails';
-import AccountSearch from '../../components/AccountSearch';
+import SearchAppBar from '../../components/SearchAppBar/SearchAppBar';
 
 // Endpoints;
 //const localNet = 'http://localhost:888';
@@ -23,29 +23,7 @@ const mainNet = 'https://api.eosdetroit.io:443';
 const endpoint = mainNet;
 
 const styles = theme => ({
-  appBarStyles: {
-    borderRadius: 0,
-    boxShadow: '0 0',
-  },
-  searchBarGridStyles: {
-    flexGrow: 1,
-    margin: '1% auto 1% auto',
-  },
-  searchBarStyles: {
-    //flexGrow: 1,
-    width: '25%',
-    //margin: 'auto auto auto auto',
-  },
-  accountSearchButton: {
-    margin: 'auto 0 auto 0',
-  },
-  formButton: {
-    //marginTop: theme.spacing.unit,
-    //width: "100%",
-  },
-  floatingLabelFocusStyle: {
-    color: "purple"
-  }
+
 });
 
 class App extends Component {
@@ -168,7 +146,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getAccountDetails('eoshuobipool');
+    this.getAccountDetails('eos');
   }
 
   render() {
@@ -177,23 +155,11 @@ class App extends Component {
 
     return (
 
-      //<div className="App">
-      <div>
-        <AppBar position="static" color="default" className={classes.appBarStyles}>
-          
-          <Toolbar>
-            <Typography variant="title" color="inherit">
-              EOS.IO
-            </Typography>
-          </Toolbar>
+      <div className="App">
+      {/* <div> */}
 
-          <Typography style={{fontSize:12}} color="textSecondary">
-              Chain ID: {chainInfo.chain_id}
-          </Typography>
+        <SearchAppBar chainId={chainInfo.chain_id} getAccountDetails={this.getAccountDetails.bind(this)}></SearchAppBar>
 
-        </AppBar>
-
-        <AccountSearch getAccountDetails={this.getAccountDetails.bind(this)}></AccountSearch>
         <AccountDetails accountInfo={accountInfo} rexBalance={rexBalance}></AccountDetails>
       </div>
 
