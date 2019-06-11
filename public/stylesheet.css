@@ -1,0 +1,39 @@
+@font-face {
+    font-family: "Exo2Regular";
+    src: url("exo2-regular-webfont.woff2") format("woff2"),
+        url("exo2-regular-webfont.woff") format("woff");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "NexaHeavy";
+    src: url("NexaHeavy.woff2") format("woff2"),
+        url("NexaHeavy.woff") format("woff");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Nexa";
+    src: url("NexaRegular.woff2") format("woff2"),
+        url("NexaRegular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Lt";
+    src: url("ProximaNova-Semibold.woff2") format("woff2"),
+        url("ProximaNova-Semibold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Rg";
+    src: url("ProximaNova-Regular.woff2") format("woff2"),
+        url("ProximaNova-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
