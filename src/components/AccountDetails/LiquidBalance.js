@@ -21,7 +21,7 @@ class LiquidBalance extends Component {
         const { eosBalanceLiquid } = this.props;
 
         return (
-          <Grid container direction="row" spacing={16}>
+          <Grid container direction="row" spacing={8}>
             <Grid item>
               <Typography style={{fontSize:12}} variant="body1" gutterBottom>
                 Balance:

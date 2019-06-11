@@ -22,7 +22,7 @@ class Permissions extends Component {
         const { classes, accountInfo } = this.props;
 
         return (
-          <Grid container direction="row" spacing={16}>
+          <Grid container direction="row" spacing={8}>
 
             <Grid item>
             { accountInfo.permissions.map((perm, i) => {

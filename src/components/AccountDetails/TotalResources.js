@@ -38,7 +38,7 @@ class TotalResources extends Component {
         }
 
         return (
-          <Grid container direction="row" spacing={16}>
+          <Grid container direction="row" spacing={8}>
       
             <Grid item>
               <Typography style={{fontSize:12}} variant="body1" gutterBottom>

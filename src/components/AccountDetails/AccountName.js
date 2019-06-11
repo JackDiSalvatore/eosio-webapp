@@ -24,7 +24,7 @@ class AccountName extends Component {
           <Grid container direction="row" spacing={8}>
 
             <Grid item>
-              <Typography style={{marginTop:'0.35em'}} color="primary" variant="h6" gutterBottom>
+              <Typography style={{marginTop:'0.35em'}} color="secondary" variant="h6" gutterBottom>
                 {accountInfo.account_name}
               </Typography>
             </Grid>
