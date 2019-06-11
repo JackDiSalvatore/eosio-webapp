@@ -38,10 +38,13 @@ const styles = theme => ({
   },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    // borderRadius: theme.shape.borderRadius,
+    borderRadius: '10px',
+    border: '1px solid #8DFFA9',
+    backgroundColor: fade(theme.palette.common.white),
+    // backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.10),
     },
     marginLeft: 0,
     width: '100%',
