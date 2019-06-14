@@ -14,16 +14,25 @@ import VoterInfo from './VoterInfo';
 
 const styles = theme => ({
     root: {
-      flexGrow: 1,
+      flexGrow: 1,      
       //width: '75%',
-      margin: '1% auto 1% auto',
+      // margin: '1% auto 1% auto',
       // border: '1mm solid rgba(174, 223, 212, .6)'
     },
     voteInfo: {
       // margin: 'auto',
       padding: '0 20px 0 20px'
     },
-  });
+    itemStyle: {
+      marginRight: '5px',
+      marginLeft: '5px',
+      border: '1px dotted blue'
+    },
+    hrStyle: {
+      // clear: 'both',
+      visibility: 'hidden',
+    }
+});
   
 
 class AccountDetails extends Component {
@@ -78,19 +87,90 @@ class AccountDetails extends Component {
             justify="center"
             className={classes.root}
           >
-          
-            <Grid item>
-              <AccountName accountInfo={accountInfo} eosTotal={eosTotal}></AccountName>
-              <Permissions accountInfo={accountInfo}></Permissions>
-              <LiquidBalance eosBalanceLiquid={eosBalanceLiquid}></LiquidBalance>
-              <RefundRequest accountInfo={accountInfo}></RefundRequest>
-              <REXBalance accountInfo={accountInfo} rexBalance={rexBalance}></REXBalance>
-              <RAM accountInfo={accountInfo}></RAM>
-              <TotalResources accountInfo={accountInfo}></TotalResources>
+
+          <Grid item className={classes.itemStyle}>
+            <Grid
+              container
+              spacing={0}
+              direction="row"
+              alignItems="center"
+              justify="center"
+              className={classes.root}
+            >
+            
+              <Grid item className={classes.itemStyle}>
+                <AccountName accountInfo={accountInfo} eosTotal={eosTotal}></AccountName>
+                {/* <Permissions accountInfo={accountInfo}></Permissions>
+                <LiquidBalance eosBalanceLiquid={eosBalanceLiquid}></LiquidBalance>
+                <RefundRequest accountInfo={accountInfo}></RefundRequest>
+                <REXBalance accountInfo={accountInfo} rexBalance={rexBalance}></REXBalance>
+                <RAM accountInfo={accountInfo}></RAM>
+                <TotalResources accountInfo={accountInfo}></TotalResources>
+                <VoterInfo accountInfo={accountInfo}></VoterInfo> */}
+              </Grid>
+
+              <Grid item className={classes.itemStyle}>
+                <RAM accountInfo={accountInfo}></RAM>
+              </Grid>
+
+              <Grid item className={classes.itemStyle}>
+                <TotalResources accountInfo={accountInfo}></TotalResources>
+              </Grid>
+
+
+            </Grid>
+          </Grid>
+
+          <Grid item className={classes.itemStyle}>
+            <Permissions accountInfo={accountInfo}></Permissions>
+          </Grid>
+
+          <Grid item className={classes.itemStyle}>
+            <Grid
+              container
+              spacing={0}
+              direction="row"
+              alignItems="flex-start"
+              justify="center"
+              // className={classes.root}
+            >
+
+            <Grid item className={classes.itemStyle}>
+              <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="stretch"
+              >
+              
+                <Grid item>
+                  <LiquidBalance eosBalanceLiquid={eosBalanceLiquid}></LiquidBalance>
+                  <RefundRequest accountInfo={accountInfo}></RefundRequest>
+                </Grid>
+
+                <Grid item>
+                  <hr className={classes.hrStyle}></hr>
+                  {/* <RefundRequest accountInfo={accountInfo}></RefundRequest> */}
+                </Grid>
+
+                <Grid item>
+                  <REXBalance accountInfo={accountInfo} rexBalance={rexBalance}></REXBalance>
+                </Grid>
+
+              </Grid>
+              
+            </Grid>
+
+            <Grid item className={classes.itemStyle}>
               <VoterInfo accountInfo={accountInfo}></VoterInfo>
             </Grid>
 
+            </Grid>
+                
           </Grid>
+          
+          </Grid>
+
         )
     }
 }

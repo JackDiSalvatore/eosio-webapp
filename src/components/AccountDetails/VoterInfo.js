@@ -2,10 +2,37 @@ import React, { Component } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
-
+  root: {
+    flexGrow: 1
+    },
+    textStyle: {
+    color: theme.palette.secondary.contrastText,
+    },
+    itemStyle: {
+    marginLeft: '25px',
+    },
+    paper: {
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+    gridListRoot: {
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        // justifyContent: 'space-around',
+        // overflow: 'hidden',
+        // backgroundColor: theme.palette.background.paper,
+      },
+      gridList: {
+        width: 600,
+        // height: 450,
+      },
 });
 
 class VoterInfo extends Component {
@@ -27,68 +54,22 @@ class VoterInfo extends Component {
         }
 
         return (
-          <Grid container direction="row" spacing={8}>
+          <Grid container direction="row" spacing={0}>
       
               <Grid item>
-                  <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-                  Voting For: 
+                  <Typography className={classes.textStyle}>
+                  Voting
                   </Typography>
               </Grid>
-      
-              <Grid item>
-                  <Grid container direction="row" spacing={8}>
-      
-                  <Grid item className={classes.voteInfo}>
-                      {votes.map((prod, i) => {
-                      if (i<6)
-                          return <Typography style={{fontSize:12}} variant="body1" gutterBottom className={"prod"} key={i}>
-                                      {prod}
-                                  </Typography>     
-                      })
-                      }         
-                  </Grid>
-      
-                  <Grid item className={classes.voteInfo}>
-                      {votes.map((prod, i) => {
-                      if (i>=6 && i<12)
-                      return <Typography style={{fontSize:12}} variant="body1" gutterBottom className={"prod"} key={i}>
-                                  {prod}
-                              </Typography>
-                      })
-                      }         
-                  </Grid>
-      
-                  <Grid item className={classes.voteInfo}>
-                      {votes.map((prod, i) => {
-                      if (i>=12 && i<18)
-                      return <Typography style={{fontSize:12}} variant="body1" gutterBottom className={"prod"} key={i}>
-                                  {prod}
-                              </Typography>
-                      })
-                      }         
-                  </Grid>
-      
-                  <Grid item className={classes.voteInfo}>
-                      {votes.map((prod, i) => {
-                      if (i>=18 && i<24)
-                      return <Typography style={{fontSize:12}} variant="body1" gutterBottom className={"prod"} key={i}>
-                                  {prod}
-                              </Typography>
-                      })
-                      }         
-                  </Grid>
-      
-                  <Grid item className={classes.voteInfo}>
-                      {votes.map((prod, i) => {
-                      if (i>=24 && i<30)
-                      return <Typography style={{fontSize:12}} variant="body1" gutterBottom className={"prod"} key={i}>
-                                  {prod}
-                              </Typography>
-                      })
-                      }         
-                  </Grid>
-      
-                  </Grid>
+
+              <Grid item className={classes.gridListRoot}>
+                <GridList cellHeight={20} className={classes.gridList} cols={5}>
+                    {votes.map(vote => (
+                        <GridListTile key={vote} cols={1}>
+                            <Typography className={classes.textStyle}>{vote}</Typography>
+                        </GridListTile>
+                    ))}
+                </GridList>
               </Grid>
   
           </Grid>

@@ -5,8 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-
-  });
+  textStyle: {
+    color: theme.palette.secondary.contrastText,
+  },
+  headerTextStyle: {
+    color: theme.palette.secondary.contrastText,
+    alignItems: 'left',
+  }
+});
   
 
 class REXBalance extends Component {
@@ -18,7 +24,7 @@ class REXBalance extends Component {
 
     render() {
         //const { }
-        const { accountInfo, rexBalance } = this.props;
+        const { classes, accountInfo, rexBalance } = this.props;
 
         var rexVoteStake = '0.0000 EOS'
         var rex_balance = '0.0000 REX'
@@ -32,27 +38,62 @@ class REXBalance extends Component {
 
 
         return (
-          <Grid container direction="row" spacing={8}>
-  
-          <Grid item>
-            <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-              REX Vote Stake / REX Balance: 
-            </Typography>
-            <Typography style={{fontSize:12}} variant="body1" gutterBottom>
+          <div>
+            <Grid container direction="column" justify="center" alignItems="flex-start" spacing={0} className={classes.root}>
+              <Grid item>
+                <Typography className={classes.textStyle}>
+                  REX
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid container direction="column" justify="center" alignItems="stretch" spacing={0} className={classes.root}>
+              
+              <Grid item>
+                <Grid container direction="row" justify="space-between" alignItems="center" spacing={0}>
+      
+                  <Grid item>
+                    <Typography className={classes.textStyle}>
+                      Staked 
+                    </Typography>
+                  </Grid>
+
+                  <Grid item>
+                    <Typography className={classes.textStyle}>
+                      {rexVoteStake}
+                    </Typography>
+                  </Grid> 
+
+                </Grid>
+              </Grid>
+
+              <Grid item>
+                <Grid container direction="row" justify="space-between" alignItems="center" spacing={0}>
+      
+                <Grid item>
+                    <Typography className={classes.textStyle}>
+                      Balance 
+                    </Typography>
+                  </Grid>
+
+                  <Grid item>
+                    <Typography className={classes.textStyle}>
+                      {rex_balance}
+                    </Typography>
+                  </Grid>   
+
+                </Grid>
+              </Grid>
+
+            {/* <Typography style={{fontSize:12}} variant="body1" gutterBottom>
               REX Matured: 
-            </Typography>
-          </Grid>
-  
-          <Grid item>
-            <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-              {rexVoteStake} / {rex_balance}
             </Typography>
             <Typography style={{fontSize:12}} variant="body1" gutterBottom>
               {rexMatured}
-            </Typography>
-          </Grid>   
-  
-        </Grid>
+            </Typography> */}
+
+            </Grid>
+          </div>
         )
     }
 }

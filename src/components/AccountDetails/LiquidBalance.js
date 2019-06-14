@@ -5,8 +5,19 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-
-  });
+  root: {
+    flexGrow: 1
+  },
+  textStyle: {
+    color: theme.palette.secondary.contrastText,
+  },
+  specialTextStyle: {
+    color: theme.palette.secondary.main
+  },    
+  itemStyle: {
+    marginLeft: '25px',
+  }
+});
   
 
 class LiquidBalance extends Component {
@@ -18,17 +29,19 @@ class LiquidBalance extends Component {
 
     render() {
         //const { }
-        const { eosBalanceLiquid } = this.props;
+        const { classes, eosBalanceLiquid } = this.props;
 
         return (
-          <Grid container direction="row" spacing={8}>
+          <Grid container direction="row" justify="space-between" alignItems="center" spacing={0} className={classes.root}>
+
             <Grid item>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-                Balance:
+              <Typography className={classes.textStyle}>
+                Balance
               </Typography>
             </Grid>
+
             <Grid item>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
+              <Typography className={classes.textStyle}>
                 { eosBalanceLiquid } EOS
               </Typography>
             </Grid>

@@ -5,9 +5,20 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-
+  root: {
+    flexGrow: 1
+  },
+  textStyle: {
+    color: theme.palette.secondary.contrastText,
+  },
+  specialTextStyle: {
+    color: theme.palette.secondary.main
+  },
+  itemStyle: {
+    // marginLeft: '25px',
+  }
 });
-  
+
 
 class RefundRequest extends Component {
 
@@ -18,7 +29,7 @@ class RefundRequest extends Component {
 
     render() {
         //const { }
-        const { accountInfo } = this.props;
+        const { classes, accountInfo } = this.props;
 
         // Refunding
         var requestTime = null;
@@ -35,25 +46,25 @@ class RefundRequest extends Component {
         }
 
         return (
-          <Grid container direction="row" spacing={8}>
+          <Grid container direction="row" justify="space-between" alignItems="center" spacing={0}>
             <Grid item>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-                Refunding:
+              <Typography className={classes.textStyle}>
+                Refunding
               </Typography>
             </Grid>
     
-            <Grid item>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
+            <Grid item className={classes.itemStyle}>
+              <Typography className={classes.textStyle}>
                 {totalRefund}
               </Typography>
             </Grid>
     
-            <Grid item>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
+            {/* <Grid item>
+              <Typography style={{fontSize:12}} className={classes.textStyle}>
                 {refundRequestCPU} CPU / {refundRequestNET} NET
                 <span> {requestTime}</span>
               </Typography>
-            </Grid>
+            </Grid> */}
           </Grid>
         )
     }

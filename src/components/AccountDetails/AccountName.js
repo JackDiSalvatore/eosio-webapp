@@ -5,7 +5,18 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-
+  textStyle: {
+    color: theme.palette.primary.contrastText,
+  },
+  accountNameStyle: {
+    color: theme.palette.secondary.contrastText,
+  },
+  // gridStyle: {
+  //   border: '2px dotted purple'
+  // },
+  // itemStyle: {
+  //   border: '2px dotted yellow'
+  // }
 });
   
 
@@ -18,20 +29,26 @@ class AccountName extends Component {
 
     render() {
         //const { }
-        const { accountInfo, eosTotal } = this.props;
+        const { classes, accountInfo, eosTotal } = this.props;
 
         return (
-          <Grid container direction="row" spacing={8}>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="flex-end"
+            spacing={0}
+            >
 
-            <Grid item>
-              <Typography style={{marginTop:'0.35em'}} color="secondary" variant="h6" gutterBottom>
-                {accountInfo.account_name}
+            <Grid item className={classes.itemStyle}>
+              <Typography className={classes.textStyle} variant="h3">
+                { Math.floor(eosTotal * 10000) / 10000 } EOS
               </Typography>
             </Grid>
 
-            <Grid item>
-              <Typography variant="h4" gutterBottom>
-                { Math.floor(eosTotal * 10000) / 10000 } EOS
+            <Grid item className={classes.itemStyle}>
+              <Typography className={classes.accountNameStyle} variant="h5">
+                {accountInfo.account_name}
               </Typography>
             </Grid>
 
