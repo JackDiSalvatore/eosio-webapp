@@ -146,7 +146,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getAccountDetails('eos');
+    this.getAccountDetails('jdisalvatore');
   }
 
   render() {
@@ -156,8 +156,6 @@ class App extends Component {
     return (
 
       <div className="App">
-      {/* <div> */}
-
         <SearchAppBar chainId={chainInfo.chain_id} getAccountDetails={this.getAccountDetails.bind(this)}></SearchAppBar>
 
         <AccountDetails accountInfo={accountInfo} rexBalance={rexBalance}></AccountDetails>
