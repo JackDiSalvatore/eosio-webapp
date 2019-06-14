@@ -51,14 +51,14 @@ class Permissions extends Component {
                             }) }
                           { perm.required_auth.accounts.map((row, j) => {
                               return <div className={"row"} key={j}>
-                                      <Typography className={classes.textStyle} className={"row"} key={j}>
+                                      <Typography className={classes.textStyle}>
                                         { row.weight }: { row.permission.actor }@{ row.permission.permission }
                                       </Typography>
                                     </div>
                           }) }
                           { perm.required_auth.waits.map((row, j) => {
                               return <div className={"row"} key={j}>
-                                      <Typography className={classes.textStyle} className={"row"} key={j}>
+                                      <Typography className={classes.textStyle}>
                                         { row.weight }: { row.wait_sec }
                                       </Typography>
                                     </div>
