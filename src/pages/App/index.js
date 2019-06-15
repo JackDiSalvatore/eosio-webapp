@@ -146,7 +146,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getAccountDetails('jdisalvatore');
+    this.getAccountDetails('eos');
   }
 
   render() {
