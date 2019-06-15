@@ -1,6 +1,7 @@
 # eosio-webapp
 
-Under Construction...
+![demo image could not be displayed: https://raw.githubusercontent.com/JackDiSalvatore/eosio-webapp/master/docs/design/demo-image.png](https://raw.githubusercontent.com/JackDiSalvatore/eosio-webapp/master/docs/design/demo-image.png)
+
 
 [View App](https://eosio-webapp.herokuapp.com/)
 
