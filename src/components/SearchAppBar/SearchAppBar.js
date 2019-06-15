@@ -144,11 +144,9 @@ class SearchAppBar extends Component {
             </Grid>
           </Grid>
 
-          <Grid item>
-
+          {/* <Grid item>
             <img className={classes.arrowIcon} src={arrowIcon}/>
-
-          </Grid>
+          </Grid> */}
 
           <Grid item>
 
