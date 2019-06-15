@@ -11,25 +11,27 @@ import RAM from './RAM';
 import REXBalance from './REXBalance';
 import TotalResources from './TotalResources';
 import VoterInfo from './VoterInfo';
+import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
     root: {
-      flexGrow: 1,      
+      flexGrow: 1,
+      textAlign: 'center',
       //width: '75%',
       // margin: '1% auto 1% auto',
       // border: '1mm solid rgba(174, 223, 212, .6)'
     },
-    voteInfo: {
-      // margin: 'auto',
-      padding: '0 20px 0 20px'
+    gridStyles: {
+      margin: 'auto',
+      width: '100%',
     },
     itemStyle: {
-      marginRight: '5px',
-      marginLeft: '5px',
-      // border: '1px dotted blue'
+      // marginRight: '5px',
+      // marginLeft: '5px',
+      border: '1px dotted blue'
     },
     hrStyle: {
-      marginTop: '2000%',
+      // marginTop: '37px',
       // clear: 'both',
       visibility: 'hidden',
     }
@@ -80,99 +82,91 @@ class AccountDetails extends Component {
                         + rexVoteStake
         
         return (
+          <div className={classes.root}>
           <Grid
             container
-            spacing={0}
+            spacing={10}
             direction="column"
             alignItems="center"
             justify="center"
-            className={classes.root}
+            className={classes.gridStyles}
           >
-
-          <Grid item className={classes.itemStyle}>
-            <Grid
-              container
-              spacing={0}
-              direction="row"
-              alignItems="center"
-              justify="center"
-              className={classes.root}
-            >
-            
-              <Grid item className={classes.itemStyle}>
-                <AccountName accountInfo={accountInfo} eosTotal={eosTotal}></AccountName>
-                {/* <Permissions accountInfo={accountInfo}></Permissions>
-                <LiquidBalance eosBalanceLiquid={eosBalanceLiquid}></LiquidBalance>
-                <RefundRequest accountInfo={accountInfo}></RefundRequest>
-                <REXBalance accountInfo={accountInfo} rexBalance={rexBalance}></REXBalance>
-                <RAM accountInfo={accountInfo}></RAM>
-                <TotalResources accountInfo={accountInfo}></TotalResources>
-                <VoterInfo accountInfo={accountInfo}></VoterInfo> */}
-              </Grid>
-
-              <Grid item className={classes.itemStyle}>
-                <RAM accountInfo={accountInfo}></RAM>
-              </Grid>
-
-              <Grid item className={classes.itemStyle}>
-                <TotalResources accountInfo={accountInfo}></TotalResources>
-              </Grid>
-
-
-            </Grid>
-          </Grid>
-
-          <Grid item className={classes.itemStyle}>
-            <Permissions accountInfo={accountInfo}></Permissions>
-          </Grid>
-
-          <Grid item className={classes.itemStyle}>
-            <Grid
-              container
-              spacing={0}
-              direction="row"
-              justify="center"
-              alignItems="stretch"
-              // className={classes.root}
-            >
 
             <Grid item className={classes.itemStyle}>
               <Grid
                 container
-                direction="column"
+                spacing={5}
+                direction="row"
+                alignItems="center"
                 justify="center"
-                alignItems="stretch"
+                className={classes.root}
               >
               
                 <Grid item>
-                  <LiquidBalance eosBalanceLiquid={eosBalanceLiquid}></LiquidBalance>
+                  <AccountName accountInfo={accountInfo} eosTotal={eosTotal}></AccountName>
                 </Grid>
 
                 <Grid item>
-                  <RefundRequest accountInfo={accountInfo}></RefundRequest>
+                  <RAM accountInfo={accountInfo}></RAM>
                 </Grid>
 
                 <Grid item>
-                  <hr className={classes.hrStyle}></hr>
-                </Grid>
-
-                <Grid item>
-                  <REXBalance accountInfo={accountInfo} rexBalance={rexBalance}></REXBalance>
+                  <TotalResources accountInfo={accountInfo}></TotalResources>
                 </Grid>
 
               </Grid>
-              
             </Grid>
 
             <Grid item className={classes.itemStyle}>
-              <VoterInfo accountInfo={accountInfo}></VoterInfo>
+              <Permissions accountInfo={accountInfo}></Permissions>
             </Grid>
 
+            <Grid item className={classes.itemStyle}>
+              <Grid
+                container
+                spacing={5}
+                direction="row"
+                justify="center"
+                alignItems="stretch"
+                className={classes.root}
+              >
+
+                <Grid item>
+                  <Grid
+                    container
+                    spacing={4}
+                    direction="column"
+                    justify="center"
+                    alignItems="stretch"
+                  >
+                  
+                    <Grid item>
+                      <LiquidBalance eosBalanceLiquid={eosBalanceLiquid}></LiquidBalance>
+                      <RefundRequest accountInfo={accountInfo}></RefundRequest>
+                    </Grid>
+
+
+                    {/* <Grid item>
+                      <hr className={classes.hrStyle}></hr>
+                    </Grid> */}
+
+                    <Grid item>
+                      <REXBalance accountInfo={accountInfo} rexBalance={rexBalance}></REXBalance>
+                    </Grid>
+
+                  </Grid>
+                  
+                </Grid>
+
+                <Grid item>
+                  <VoterInfo accountInfo={accountInfo}></VoterInfo>
+                </Grid>
+
+              </Grid>
+
             </Grid>
-                
           </Grid>
-          
-          </Grid>
+          </div>
 
         )
     }

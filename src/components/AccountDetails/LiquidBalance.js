@@ -32,7 +32,7 @@ class LiquidBalance extends Component {
         const { classes, eosBalanceLiquid } = this.props;
 
         return (
-          <Grid container direction="row" justify="space-between" alignItems="center" spacing={0} className={classes.root}>
+          <Grid container direction="row" justify="space-between" alignItems="center" spacing={2} className={classes.root}>
 
             <Grid item>
               <Typography className={classes.textStyle}>

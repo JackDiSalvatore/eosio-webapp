@@ -46,7 +46,7 @@ class RefundRequest extends Component {
         }
 
         return (
-          <Grid container direction="row" justify="space-between" alignItems="center" spacing={0}>
+          <Grid container direction="row" justify="space-between" alignItems="center" spacing={2}>
             <Grid item>
               <Typography className={classes.textStyle}>
                 Refunding

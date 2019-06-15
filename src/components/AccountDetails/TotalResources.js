@@ -25,8 +25,8 @@ const styles = theme => ({
     color: theme.palette.secondary.main,
   },
   itemStyle: {
-    marginRight: '15px',
-    marginLeft: '15px',
+    // marginRight: '15px',
+    // marginLeft: '15px',
     // border: '1px solid red'
   }
 });
@@ -61,7 +61,8 @@ class TotalResources extends Component {
         }
 
         return (
-          <Grid container direction="row" alignItems="center" justify="center" spacing={0}>
+          <div className={classes.root}>
+          <Grid container direction="row" alignItems="center" justify="center" spacing={2}>
       
             <Grid item>
             <Typography className={classes.bandwithTextStyle}>
@@ -85,7 +86,7 @@ class TotalResources extends Component {
               </Typography>
             </Grid>
 
-            <Grid item className={classes.itemStyle} style={{textAlign:'left'}}>
+            <Grid item style={{textAlign:'left'}}>
               <Typography className={classes.headerTextStyle}>
                 Staked
               </Typography>
@@ -97,7 +98,7 @@ class TotalResources extends Component {
               </Typography>
             </Grid>
 
-            <Grid item className={classes.itemStyle} style={{textAlign:'left'}}>
+            <Grid item style={{textAlign:'left'}}>
               <Typography className={classes.headerTextStyle}>
                 Delegated
               </Typography>
@@ -109,7 +110,7 @@ class TotalResources extends Component {
               </Typography>
             </Grid>
 
-            <Grid item className={classes.itemStyle} style={{textAlign:'left'}}>
+            <Grid item style={{textAlign:'left'}}>
               <Typography className={classes.headerTextStyle}>
                 Delegating
               </Typography>
@@ -134,6 +135,7 @@ class TotalResources extends Component {
             </Grid> */}
 
           </Grid>
+          </div>
         )
     }
 }

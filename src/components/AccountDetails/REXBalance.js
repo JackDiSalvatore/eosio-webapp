@@ -13,6 +13,7 @@ const styles = theme => ({
     fontFamily: 'Exo2Bold',
     fontSize: 12,
     letterSpacing: '0.25em',
+    textAlign: 'left',
   }
 });
   
@@ -41,18 +42,16 @@ class REXBalance extends Component {
 
         return (
           <div>
-            <Grid container direction="column" justify="center" alignItems="flex-start" spacing={0} className={classes.root}>
-              <Grid item>
-                <Typography className={classes.headerTextStyle}>
+
+                <Typography className={classes.headerTextStyle} gutterBottom>
                   REX
                 </Typography>
-              </Grid>
-            </Grid>
 
-            <Grid container direction="column" justify="center" alignItems="stretch" spacing={0} className={classes.root}>
+
+            {/* <Grid container direction="column" justify="center" alignItems="stretch" spacing={0} className={classes.root}> */}
               
-              <Grid item>
-                <Grid container direction="row" justify="space-between" alignItems="center" spacing={0}>
+              {/* <Grid item> */}
+                <Grid container direction="row" justify="space-between" alignItems="center" spacing={2}>
       
                   <Grid item>
                     <Typography className={classes.textStyle}>
@@ -67,12 +66,12 @@ class REXBalance extends Component {
                   </Grid> 
 
                 </Grid>
-              </Grid>
+              {/* </Grid> */}
 
-              <Grid item>
-                <Grid container direction="row" justify="space-between" alignItems="center" spacing={0}>
+              {/* <Grid item> */}
+                <Grid container direction="row" justify="space-between" alignItems="center" spacing={2}>
       
-                <Grid item>
+                  <Grid item>
                     <Typography className={classes.textStyle}>
                       Balance 
                     </Typography>
@@ -85,7 +84,7 @@ class REXBalance extends Component {
                   </Grid>   
 
                 </Grid>
-              </Grid>
+              {/* </Grid> */}
 
             {/* <Typography style={{fontSize:12}} variant="body1" gutterBottom>
               REX Matured: 
@@ -94,7 +93,7 @@ class REXBalance extends Component {
               {rexMatured}
             </Typography> */}
 
-            </Grid>
+            {/* </Grid> */}
           </div>
         )
     }

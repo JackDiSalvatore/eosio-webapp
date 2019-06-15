@@ -63,7 +63,7 @@ class VoterInfo extends Component {
           <Grid container direction="column" justify="center" alignItems="flex-start" spacing={0}>
       
               <Grid item>
-                  <Typography className={classes.headerTextStyle}>
+                  <Typography className={classes.headerTextStyle} gutterBottom>
                   Voting
                   </Typography>
               </Grid>
