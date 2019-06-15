@@ -11,6 +11,12 @@ const styles = theme => ({
   root: {
     flexGrow: 1
     },
+    headerTextStyle: {
+        color: theme.palette.primary.contrastText,
+        fontFamily: 'Exo2Bold',
+        fontSize: 12,
+        letterSpacing: '0.25em',
+    },
     textStyle: {
     color: theme.palette.secondary.contrastText,
     },
@@ -54,16 +60,16 @@ class VoterInfo extends Component {
         }
 
         return (
-          <Grid container direction="row" spacing={0}>
+          <Grid container direction="column" justify="center" alignItems="flex-start" spacing={0}>
       
               <Grid item>
-                  <Typography className={classes.textStyle}>
+                  <Typography className={classes.headerTextStyle}>
                   Voting
                   </Typography>
               </Grid>
 
               <Grid item className={classes.gridListRoot}>
-                <GridList cellHeight={20} className={classes.gridList} cols={5}>
+                <GridList cellHeight={20} className={classes.gridList} cols={5} rows={6}>
                     {votes.map(vote => (
                         <GridListTile key={vote} cols={1}>
                             <Typography className={classes.textStyle}>{vote}</Typography>

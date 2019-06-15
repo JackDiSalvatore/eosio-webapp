@@ -26,9 +26,10 @@ const styles = theme => ({
     itemStyle: {
       marginRight: '5px',
       marginLeft: '5px',
-      border: '1px dotted blue'
+      // border: '1px dotted blue'
     },
     hrStyle: {
+      marginTop: '2000%',
       // clear: 'both',
       visibility: 'hidden',
     }
@@ -130,8 +131,8 @@ class AccountDetails extends Component {
               container
               spacing={0}
               direction="row"
-              alignItems="flex-start"
               justify="center"
+              alignItems="stretch"
               // className={classes.root}
             >
 
@@ -145,12 +146,14 @@ class AccountDetails extends Component {
               
                 <Grid item>
                   <LiquidBalance eosBalanceLiquid={eosBalanceLiquid}></LiquidBalance>
+                </Grid>
+
+                <Grid item>
                   <RefundRequest accountInfo={accountInfo}></RefundRequest>
                 </Grid>
 
                 <Grid item>
                   <hr className={classes.hrStyle}></hr>
-                  {/* <RefundRequest accountInfo={accountInfo}></RefundRequest> */}
                 </Grid>
 
                 <Grid item>
