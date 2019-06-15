@@ -7,6 +7,14 @@
 }
 
 @font-face {
+    font-family: "Exo2Bold";
+    src: url("exo2-bold-webfont.woff2") format("woff2"),
+        url("exo2-bold-webfont.woff") format("woff");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
     font-family: "NexaHeavy";
     src: url("NexaHeavy.woff2") format("woff2"),
         url("NexaHeavy.woff") format("woff");

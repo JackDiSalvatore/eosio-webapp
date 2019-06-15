@@ -19,7 +19,7 @@ const theme = createMuiTheme({
 	},
 	typography: {
 		// Sets the font throughout the application.  Requires using Material UI typography component.
-		fontFamily: ["Exo2Regular", "Roboto"].join(",")
+		fontFamily: ["Exo2Regular", "Exo2Bold", "Roboto"].join(",")
 	},
 });
 
