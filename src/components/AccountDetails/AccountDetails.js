@@ -28,7 +28,7 @@ const styles = theme => ({
     itemStyle: {
       // marginRight: '5px',
       // marginLeft: '5px',
-      border: '1px dotted blue'
+      // border: '1px dotted blue'
     },
     hrStyle: {
       // marginTop: '37px',

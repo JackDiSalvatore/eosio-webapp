@@ -15,7 +15,10 @@ const styles = theme => ({
   },
   headerTextStyle: {
     color: theme.palette.primary.contrastText,
-    fontSize: 12,
+    // fontFamily: 'Exo2Bold',
+    // fontSize: 12,
+    letterSpacing: '0.25em',
+    textAlign: 'left',
   },
   textStyle: {
     color: theme.palette.secondary.contrastText,
@@ -87,7 +90,7 @@ class TotalResources extends Component {
             </Grid>
 
             <Grid item style={{textAlign:'left'}}>
-              <Typography className={classes.headerTextStyle}>
+              <Typography className={classes.headerTextStyle} variant="caption">
                 Staked
               </Typography>
               <Typography className={classes.textStyle}>
@@ -99,7 +102,7 @@ class TotalResources extends Component {
             </Grid>
 
             <Grid item style={{textAlign:'left'}}>
-              <Typography className={classes.headerTextStyle}>
+              <Typography className={classes.headerTextStyle} variant="caption">
                 Delegated
               </Typography>
               <Typography className={classes.textStyle}>
@@ -111,7 +114,7 @@ class TotalResources extends Component {
             </Grid>
 
             <Grid item style={{textAlign:'left'}}>
-              <Typography className={classes.headerTextStyle}>
+              <Typography className={classes.headerTextStyle} variant="caption">
                 Delegating
               </Typography>
               <Typography className={classes.textStyle}>

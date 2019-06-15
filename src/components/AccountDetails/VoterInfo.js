@@ -13,8 +13,8 @@ const styles = theme => ({
     },
     headerTextStyle: {
         color: theme.palette.primary.contrastText,
-        fontFamily: 'Exo2Bold',
-        fontSize: 12,
+        // fontFamily: 'Exo2Bold',
+        // fontSize: 12,
         letterSpacing: '0.25em',
     },
     textStyle: {
@@ -63,7 +63,7 @@ class VoterInfo extends Component {
           <Grid container direction="column" justify="center" alignItems="flex-start" spacing={0}>
       
               <Grid item>
-                  <Typography className={classes.headerTextStyle} gutterBottom>
+                  <Typography className={classes.headerTextStyle} variant="caption" gutterBottom>
                   Voting
                   </Typography>
               </Grid>

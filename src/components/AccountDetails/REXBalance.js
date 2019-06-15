@@ -10,10 +10,9 @@ const styles = theme => ({
   },
   headerTextStyle: {
     color: theme.palette.primary.contrastText,
-    fontFamily: 'Exo2Bold',
-    fontSize: 12,
+    // fontFamily: 'Exo2Bold',
+    // fontSize: 12,
     letterSpacing: '0.25em',
-    textAlign: 'left',
   }
 });
   
@@ -41,11 +40,11 @@ class REXBalance extends Component {
 
 
         return (
-          <div>
+          <div style={{textAlign:'left'}}>
 
-                <Typography className={classes.headerTextStyle} gutterBottom>
-                  REX
-                </Typography>
+            <Typography className={classes.headerTextStyle} variant="caption" gutterBottom>
+              REX
+            </Typography>
 
 
             {/* <Grid container direction="column" justify="center" alignItems="stretch" spacing={0} className={classes.root}> */}
