@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -22,7 +23,7 @@ class Permissions extends Component {
     }
     
     componentDidMount() {
-      console.log('Permissions are ...')
+      console.log('Permissions mounted')
     }
 
     render() {
