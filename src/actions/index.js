@@ -1,7 +1,7 @@
 // import { ActionTypes } from 'const';
 
 
-export const UserAction = (accountInfo) => {
+export const SetUserAction = (accountInfo) => {
     console.log("Action fired")
     return {
         type: 'SET_USER',
