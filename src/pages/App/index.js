@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { JsonRpc, RpcError } from 'eosjs';
 
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 
-//import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 //import TextField from '@material-ui/core/TextField';
 //import Paper from '@material-ui/core/Paper';
 //import Button from '@material-ui/core/Button';
+
+// Actions
+import { UserAction } from '../../actions';
 
 // Components
 import AccountDetails from '../../components/AccountDetails/AccountDetails';
@@ -23,7 +27,9 @@ const mainNet = 'https://api.eosdetroit.io:443';
 const endpoint = mainNet;
 
 const styles = theme => ({
-
+  textStyle: {
+    color: theme.palette.secondary.contrastText,
+  },
 });
 
 class App extends Component {
@@ -33,79 +39,6 @@ class App extends Component {
     this.state = {
       chainInfo: {
         "chain_id": "DISCONNECTED",
-      },
-      accountInfo: {
-        account_name: "testacc",
-        core_liquid_balance: "25.8044 EOS",
-        head_block_num: 1079,
-        head_block_time: "2018-11-10T00:45:53.500",
-        privileged: false,
-        last_code_update: "1970-01-01T00:00:00.000",
-        created: "2018-11-10T00:37:05.000",
-        ram_quota: -1,
-        net_weight: -1,
-        cpu_weight: -1,
-        net_limit: { used: -1, available: -1, max: -1 },
-        cpu_limit: { used: -1, available: -1, max: -1 },
-        ram_usage: 2724,
-        permissions: [
-          { 
-            perm_name: "active",
-            parent: "owner",
-            required_auth: {
-              accounts: [
-                {
-                  actor: "",
-                  permission: "",
-                  weight: 0,
-                }
-              ],
-              keys: [
-                {
-                  key: "",
-                  weight: 0,
-                }
-              ],
-              threshold: 0,
-              waits: [
-                {
-                  "wait_sec": 0,
-                  "weight": 0,
-                }
-              ]
-            }
-          } 
-        ],
-        total_resources: {
-          cpu_weight: "10.5481 EOS",
-          net_weight: "10.5482 EOS",
-          owner: "eosio",
-          ram_bytes: 14021,
-        },
-        self_delegated_bandwidth: {
-          cpu_weight: "10.5481 EOS",
-          from: "eosio",
-          net_weight: "10.5482 EOS",
-          to: "eosio"
-        },
-        refund_request: {
-          cpu_amount: "0.0000 EOS",
-          net_amount: "880.0000 EOS",
-          owner: "eosio",
-          request_time: "2019-05-15T12:25:29"
-        },
-        voter_info: {
-          flags1: 0,
-          is_proxy:0,
-          last_vote_weight: "6335582760066.02734375000000000",
-          owner: "testacc",
-          producers: ["1eostheworld"],
-          proxied_vote_weight: "0.00000000000000000",
-          proxy: "",
-          reserved2: 0,
-          reserved3: "0.0000 EOS",
-          staked: 9012760
-        } 
       },
       rexBalance: {
         version: 0,
@@ -130,7 +63,8 @@ class App extends Component {
       rpc.get_info().then(result => this.setState({chainInfo: result}))
       rpc.get_account(accountName).then(result => {
         this.setState({accountInfo: result})
-        console.log(result.permissions)
+        // CALL ACTION
+        this.props.setUser(result)
       });
       // rpc.get_currency_balance('eosio.token', accountName, 'EOS').then(result => this.setState({ eosBalance: result}));
       rpc.get_table_rows({
@@ -153,8 +87,8 @@ class App extends Component {
   }
 
   render() {
-    const { chainInfo, accountInfo, rexBalance } = this.state;
-    const { classes } = this.props;
+    const { chainInfo, rexBalance } = this.state;
+    const { classes, accountInfo } = this.props;
 
     return (
 
@@ -170,4 +104,16 @@ class App extends Component {
 
 }
 
-export default withStyles(styles)(App);
+function mapStateToProps(state) {
+  return {
+    accountInfo: state.accountInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: (accountInfo) => { dispatch(UserAction(accountInfo)) },
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(App));
