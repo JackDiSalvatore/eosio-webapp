@@ -108,9 +108,6 @@ class SearchAppBar extends Component {
     // stop default behaviour
     event.preventDefault();
 
-    let accountName = event.target.accountNameSearch.value;
-    console.log('Account Name is ' + accountName);
-    
     this.props.getAccountDetails(event.target.accountNameSearch.value);
   }
 
