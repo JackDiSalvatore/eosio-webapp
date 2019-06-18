@@ -1,6 +1,6 @@
 
 const initialState = {
-  "chain_id": "DISCONNECTED",
+  chain_id: "DISCONNECTED",
 }
 
 
