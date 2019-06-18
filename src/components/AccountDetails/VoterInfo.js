@@ -34,6 +34,7 @@ const styles = theme => ({
         // justifyContent: 'space-around',
         // overflow: 'hidden',
         // backgroundColor: theme.palette.background.paper,
+        textAlign: 'left'
       },
       gridList: {
         width: 600,
