@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 
 // Actions
 import { SetAccountAction } from '../../actions';
-import { GetChainInfoAction } from '../../actions/GetChainInfoAction';
+import { SetChainInfoAction } from '../../actions/SetChainInfoAction';
 import { SetREXBalanceAction } from '../../actions/SetREXBalanceAction';
 
 // Components
@@ -51,7 +51,7 @@ class App extends Component {
       rpc.get_info().then(result => {
         this.setState({chainInfo: result})
         // CALL ACTION
-        this.props.getChainInfo(result)
+        this.props.setChainInfo(result)
       })
 
       rpc.get_account(accountName).then(result => {
@@ -113,7 +113,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (accountInfo) => { dispatch(SetAccountAction(accountInfo)) },
-    getChainInfo: (chainInfo) => { dispatch(GetChainInfoAction(chainInfo)) },
+    setChainInfo: (chainInfo) => { dispatch(SetChainInfoAction(chainInfo)) },
     setREXBalance: (rexBalance) => { dispatch(SetREXBalanceAction(rexBalance)) },
   }
 };
