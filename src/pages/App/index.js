@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 // Actions
 import { SetAccountAction } from '../../actions';
 import { GetChainInfoAction } from '../../actions/GetChainInfoAction';
+import { SetREXBalanceAction } from '../../actions/SetREXBalanceAction';
 
 // Components
 import AccountDetails from '../../components/AccountDetails/AccountDetails';
@@ -38,18 +39,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      rexBalance: {
-        version: 0,
-        owner: 'eosio',
-        vote_stake: '880.1797 EOS',
-        rex_balance: '8799320.5007 REX',
-        matured_rex: 0,
-        rex_maturities: [{
-            first: '2019-05-06T00:00:00',
-            second: '87993205007'
-          }
-        ]
-      }
+
     }
 
   }
@@ -80,7 +70,11 @@ class App extends Component {
        limit: 1,                     // Here we limit to 1 to get only the
        reverse: false,               // Optional: Get reversed data
        show_payer: false,            // Optional: Show ram payer
-      }).then(result => this.setState({ rexBalance: result.rows[0] }));
+      }).then(result => {
+        this.setState({ rexBalance: result.rows[0] })
+        // CALL ACTION
+        this.props.setREXBalance(result.rows[0])
+      });
     } catch (error) {
       console.log(error);
     }
@@ -91,8 +85,8 @@ class App extends Component {
   }
 
   render() {
-    const { rexBalance } = this.state;
-    const { classes, accountInfo, chainInfo } = this.props;
+    const {  } = this.state;
+    const { classes, accountInfo, chainInfo, rexBalance } = this.props;
 
     return (
 
@@ -112,6 +106,7 @@ function mapStateToProps(state) {
   return {
     accountInfo: state.accountInfo,
     chainInfo: state.chainInfo,
+    rexBalance: state.rexBalance,
   }
 }
 
@@ -119,6 +114,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (accountInfo) => { dispatch(SetAccountAction(accountInfo)) },
     getChainInfo: (chainInfo) => { dispatch(GetChainInfoAction(chainInfo)) },
+    setREXBalance: (rexBalance) => { dispatch(SetREXBalanceAction(rexBalance)) },
   }
 };
 
