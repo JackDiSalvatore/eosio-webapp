@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import InfoReducer from './InfoReducer';
+import AccountInfoReducer from './AccountInfoReducer';
 
 export default combineReducers({
-  accountInfo: InfoReducer,
+  accountInfo: AccountInfoReducer,
 })

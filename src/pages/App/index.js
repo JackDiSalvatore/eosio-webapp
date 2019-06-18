@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 //import Button from '@material-ui/core/Button';
 
 // Actions
-import { SetUserAction } from '../../actions';
+import { SetAccountAction } from '../../actions';
 
 // Components
 import AccountDetails from '../../components/AccountDetails/AccountDetails';
@@ -112,7 +112,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUser: (accountInfo) => { dispatch(SetUserAction(accountInfo)) },
+    setUser: (accountInfo) => { dispatch(SetAccountAction(accountInfo)) },
   }
 };
 
