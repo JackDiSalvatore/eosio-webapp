@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 
 // Actions
 import { SetAccountAction } from '../../actions';
+import { GetChainInfoAction } from '../../actions/GetChainInfoAction';
 
 // Components
 import AccountDetails from '../../components/AccountDetails/AccountDetails';
@@ -37,9 +38,6 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      chainInfo: {
-        "chain_id": "DISCONNECTED",
-      },
       rexBalance: {
         version: 0,
         owner: 'eosio',
@@ -60,12 +58,18 @@ class App extends Component {
     const rpc = new JsonRpc(endpoint, { fetch });
     console.log('Account Name is ' + accountName);
     try {
-      rpc.get_info().then(result => this.setState({chainInfo: result}))
+      rpc.get_info().then(result => {
+        this.setState({chainInfo: result})
+        // CALL ACTION
+        this.props.getChainInfo(result)
+      })
+
       rpc.get_account(accountName).then(result => {
         this.setState({accountInfo: result})
         // CALL ACTION
         this.props.setUser(result)
       });
+      
       // rpc.get_currency_balance('eosio.token', accountName, 'EOS').then(result => this.setState({ eosBalance: result}));
       rpc.get_table_rows({
        json: true,
@@ -87,8 +91,8 @@ class App extends Component {
   }
 
   render() {
-    const { chainInfo, rexBalance } = this.state;
-    const { classes, accountInfo } = this.props;
+    const { rexBalance } = this.state;
+    const { classes, accountInfo, chainInfo } = this.props;
 
     return (
 
@@ -106,13 +110,15 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    accountInfo: state.accountInfo
+    accountInfo: state.accountInfo,
+    chainInfo: state.chainInfo,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (accountInfo) => { dispatch(SetAccountAction(accountInfo)) },
+    getChainInfo: (chainInfo) => { dispatch(GetChainInfoAction(chainInfo)) },
   }
 };
 
