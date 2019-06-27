@@ -41,7 +41,7 @@ class AccountName extends Component {
             >
 
             <Grid item className={classes.itemStyle}>
-              <Typography className={classes.textStyle} variant="h3">
+              <Typography className={classes.textStyle} variant="h2">
                 { Math.floor(eosTotal * 10000) / 10000 } EOS
               </Typography>
             </Grid>
