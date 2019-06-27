@@ -7,9 +7,13 @@ import Paper from '@material-ui/core/Paper';
 
 
 const styles = theme => ({
-  headerTextStyle: {
+  weightTextStyle: {
     color: theme.palette.secondary.main,
     textAlign: 'left',
+  },
+  authorityTextStyle: {
+    color: theme.palette.primary.main,
+    // fontFamily: 'Exo2Bold',
   },
   textStyle: {
     color: theme.palette.primary.main,
@@ -64,13 +68,13 @@ class PermissionsList extends Component {
                             <Grid container direction="row" alignItems="center" spacing={1}>
 
                                 <Grid item>
-                                    <Typography className={classes.headerTextStyle} variant="h4">
+                                    <Typography className={classes.weightTextStyle} variant="h4">
                                         {option.value.required_auth.threshold}
                                     </Typography>
                                 </Grid>
                                 
                                 <Grid item>
-                                    <Typography className={classes.textStyle} variant="h6">
+                                    <Typography className={classes.authorityTextStyle}>
                                         { option.value.perm_name }
                                     </Typography>
                                 </Grid>
@@ -88,7 +92,7 @@ class PermissionsList extends Component {
                                     return <Grid item key={j}>
                                                 <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
                                                     <Grid item>
-                                                        <Typography className={classes.headerTextStyle} variant="h6">
+                                                        <Typography className={classes.weightTextStyle} variant="h6">
                                                             +{ row.weight }
                                                         </Typography>
                                                     </Grid>
@@ -109,7 +113,7 @@ class PermissionsList extends Component {
                                     return  <Grid item  key={j}>
                                                 <Grid container direction="row" justify="flex-start" alignItems="center" spacing={1}>
                                                     <Grid item>
-                                                        <Typography className={classes.headerTextStyle} variant="h6">
+                                                        <Typography className={classes.weightTextStyle} variant="h6">
                                                             +{ row.weight }
                                                         </Typography>
                                                     </Grid>
@@ -130,7 +134,7 @@ class PermissionsList extends Component {
                                     return  <Grid item  key={j}>
                                                 <Grid container direction="row" justify="flex-start" alignItems="center" spacing={1}>
                                                     <Grid item>
-                                                        <Typography className={classes.headerTextStyle} variant="h6">
+                                                        <Typography className={classes.weightTextStyle} variant="h6">
                                                             +{ row.weight }
                                                         </Typography>
                                                     </Grid>
