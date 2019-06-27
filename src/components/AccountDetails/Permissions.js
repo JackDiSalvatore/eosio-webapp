@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+
+
+import PermissionsList from './PermissionsList';
 
 const styles = theme => ({
   textStyle: {
+    color: theme.palette.secondary.contrastText,
+    textAlign: 'left',
+  },
+  ulStyle: {
+    // listStyleType: 'none'
     color: theme.palette.secondary.contrastText,
   },
   permNameStyle: {
@@ -23,58 +28,84 @@ class Permissions extends Component {
     }
     
     componentDidMount() {
-      console.log('Permissions mounted')
+      // console.log('Permissions mounted')
     }
 
     render() {
         //const { }
         const { classes, accountInfo } = this.props;
 
-        return (
-          <Grid container direction="row" spacing={0}>
+        let permissions = accountInfo.permissions
+        var permissionsHierarchy = 0
 
-            <Grid item>
-            { accountInfo.permissions.map((perm, i) => {
-                return <Grid container direction="row" spacing={0} className={"perm"} key={i}>
-                          
-                          <Grid item className={classes.permNameStyle}>
-                            <Typography className={classes.textStyle}>
-                              { perm.perm_name } { perm.required_auth.threshold }
-                            </Typography>
-                          </Grid>
+        // console.log(accountInfo.permissions)
+        if(accountInfo.permissions) { 
+
+          var items = [
+            {"Id": "1", "perm_name": "owner",      "parent": ""},
+            {"Id": "2", "perm_name": "active",     "parent": "owner"},
+            {"Id": "3", "perm_name": "newaccount", "parent": "chestnut"},
+            {"Id": "4", "perm_name": "chestnut",   "parent": "owner"},
+          ];
+        
+          function buildHierarchy(arry) {
+          
+              var roots = [], children = {};
+          
+              // find the top level nodes and hash the children based on parent
+              for (var i = 0, len = arry.length; i < len; ++i) {
+                  var item = arry[i],
+                      p = item.parent,
+                      target = !p ? roots : (children[p] || (children[p] = []));
+          
+                  target.push({ value: item });
+              }
+          
+              // function to recursively build the tree
+              var findChildren = function(parent) {
+                  if (children[parent.value.perm_name]) {
+                      parent.children = children[parent.value.perm_name];
+                      for (var i = 0, len = parent.children.length; i < len; ++i) {
+                          findChildren(parent.children[i]);
+                      }
+                  }
+              };
+          
+              // enumerate through to handle the case where there are multiple roots
+              for (var i = 0, len = roots.length; i < len; ++i) {
+                  findChildren(roots[i]);
+              }
+          
+              return roots;
+          }
+          
+          permissionsHierarchy = buildHierarchy(accountInfo.permissions)
+          // console.log(permissionsHierarchy)
+
+          permissions = permissionsHierarchy
+        }
+
+        // console.log(permissions[0].value)
+        if (permissionsHierarchy) {
+          var permissionsComponent = 
     
-                          <Grid item>
-                          { perm.required_auth.keys.map((row, j) => {
-                              return <div className={"row"} key={j}>
-                                        <Typography className={classes.textStyle}>
-                                          { row.weight }: { row.key }
-                                        </Typography>
-                                      </div> 
-                            }) }
-                          { perm.required_auth.accounts.map((row, j) => {
-                              return <div className={"row"} key={j}>
-                                      <Typography className={classes.textStyle}>
-                                        { row.weight }: { row.permission.actor }@{ row.permission.permission }
-                                      </Typography>
-                                    </div>
-                          }) }
-                          { perm.required_auth.waits.map((row, j) => {
-                              return <div className={"row"} key={j}>
-                                      <Typography className={classes.textStyle}>
-                                        { row.weight }: { row.wait_sec }
-                                      </Typography>
-                                    </div>
-                          }) }
-                          </Grid>
-    
-                        </Grid>
-              })
-            }
-            </Grid>
-  
-          </Grid>
+          <PermissionsList options={permissions}/>
+
+        } else {
+          var permissionsComponent = 
+            <Typography className={classes.textStyle}>
+              permissions loading
+            </Typography>
+        }
+
+        
+        return (
+          <div>
+            { permissionsComponent }
+          </div>
         )
     }
 }
+
 
 export default withStyles(styles)(Permissions);
