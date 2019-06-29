@@ -15,6 +15,7 @@ const styles = theme => ({
   },
   bandwithTextStyle: {
     color: theme.palette.primary.contrastText,
+    letterSpacing: '0.1em',
     fontSize: 16,
   },
   headerTextStyle: {
@@ -82,84 +83,96 @@ class TotalResources extends Component {
         }
 
         return (
-          <div className={classes.root}>
-          <Grid container direction="row" alignItems="center" justify="center" spacing={2}>
-      
+          <Grid item container direction="column" justify="center" alignItems="flex-start" spacing={0} className={classes.root}>
+
             <Grid item>
-            {/* <Typography className={classes.bandwithTextStyle}>
-                Bandwidth
-              </Typography> */}
-        
-              <ThemeProvider theme={CPUBarColor}>
-                <ProgressBar percentage={total_cpu_percentage} />
-              </ThemeProvider>
-
-              <ThemeProvider theme={NETBarColor}>
-                <ProgressBar percentage={total_net_percentage} />
-              </ThemeProvider>
-
+                <Typography className={classes.bandwithTextStyle} varient="h5">
+                  Bandwidth
+                </Typography>
             </Grid>
 
-            <Grid item className={classes.itemStyle}>
-              <Typography className={classes.specialTextStyle} variant="h5">
-                CPU
-              </Typography>
 
-              <Typography className={classes.specialTextStyle} variant="h5">
-                NET
-              </Typography>
+            <Grid item>
+              <Grid container direction="row" alignItems="center" justify="center" spacing={2}>
+          
+                <Grid item>
+                {/* <Typography className={classes.bandwithTextStyle}>
+                    Bandwidth
+                  </Typography> */}
+            
+                  <ThemeProvider theme={CPUBarColor}>
+                    <ProgressBar percentage={total_cpu_percentage} />
+                  </ThemeProvider>
+
+                  <ThemeProvider theme={NETBarColor}>
+                    <ProgressBar percentage={total_net_percentage} />
+                  </ThemeProvider>
+
+                </Grid>
+
+                <Grid item className={classes.itemStyle}>
+                  <Typography className={classes.specialTextStyle} variant="h5">
+                    CPU
+                  </Typography>
+
+                  <Typography className={classes.specialTextStyle} variant="h5">
+                    NET
+                  </Typography>
+                </Grid>
+
+                <Grid item style={{textAlign:'left'}}>
+                  <Typography className={classes.headerTextStyle} variant="caption">
+                    Staked
+                  </Typography>
+                  <Typography className={classes.textStyle}>
+                    <span> {selfResourcesCPU} EOS</span>
+                  </Typography>
+                  <Typography className={classes.textStyle}>
+                    <span> {selfResourcesNET} EOS</span>
+                  </Typography>
+                </Grid>
+
+                <Grid item style={{textAlign:'left'}}>
+                  <Typography className={classes.headerTextStyle} variant="caption">
+                    Delegated
+                  </Typography>
+                  <Typography className={classes.textStyle}>
+                    <span> { Math.floor((totalResourcesCPU - selfResourcesCPU) * 10000) / 10000 } EOS</span>
+                  </Typography>
+                  <Typography className={classes.textStyle}>
+                    <span> { Math.floor((totalResourcesNET - selfResourcesNET) * 10000) / 10000 } EOS</span>
+                  </Typography>
+                </Grid>
+
+                <Grid item style={{textAlign:'left'}}>
+                  <Typography className={classes.headerTextStyle} variant="caption">
+                    Delegating
+                  </Typography>
+                  <Typography className={classes.textStyle}>
+                    <span> todo...</span>
+                  </Typography>
+                  <Typography className={classes.textStyle}>
+                    <span> todo...</span>
+                  </Typography>
+                </Grid>
+
+                {/* <Grid item>
+                  <Typography style={{fontSize:12}} variant="body1" gutterBottom>
+                    Available
+                  </Typography>
+                  <Typography style={{fontSize:12}} variant="body1" gutterBottom>
+                    <span> { (accountInfo.cpu_limit.available / 1000000) } seconds</span>
+                  </Typography>
+                  <Typography style={{fontSize:12}} variant="body1" gutterBottom>
+                    <span> {accountInfo.net_limit.available} bytes </span>
+                  </Typography>
+                </Grid> */}
+
+              </Grid>
             </Grid>
-
-            <Grid item style={{textAlign:'left'}}>
-              <Typography className={classes.headerTextStyle} variant="caption">
-                Staked
-              </Typography>
-              <Typography className={classes.textStyle}>
-                <span> {selfResourcesCPU} EOS</span>
-              </Typography>
-              <Typography className={classes.textStyle}>
-                <span> {selfResourcesNET} EOS</span>
-              </Typography>
-            </Grid>
-
-            <Grid item style={{textAlign:'left'}}>
-              <Typography className={classes.headerTextStyle} variant="caption">
-                Delegated
-              </Typography>
-              <Typography className={classes.textStyle}>
-                <span> { Math.floor((totalResourcesCPU - selfResourcesCPU) * 10000) / 10000 } EOS</span>
-              </Typography>
-              <Typography className={classes.textStyle}>
-                <span> { Math.floor((totalResourcesNET - selfResourcesNET) * 10000) / 10000 } EOS</span>
-              </Typography>
-            </Grid>
-
-            <Grid item style={{textAlign:'left'}}>
-              <Typography className={classes.headerTextStyle} variant="caption">
-                Delegating
-              </Typography>
-              <Typography className={classes.textStyle}>
-                <span> todo...</span>
-              </Typography>
-              <Typography className={classes.textStyle}>
-                <span> todo...</span>
-              </Typography>
-            </Grid>
-
-            {/* <Grid item>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-                Available
-              </Typography>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-                <span> { (accountInfo.cpu_limit.available / 1000000) } seconds</span>
-              </Typography>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-                <span> {accountInfo.net_limit.available} bytes </span>
-              </Typography>
-            </Grid> */}
 
           </Grid>
-          </div>
+          
         )
     }
 }
