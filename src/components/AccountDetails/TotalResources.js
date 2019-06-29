@@ -77,10 +77,10 @@ class TotalResources extends Component {
             total_cpu_percentage = 100 - Math.floor((accountInfo.cpu_limit.used / accountInfo.cpu_limit.max)*100)
             total_net_percentage = 100 - Math.floor((accountInfo.net_limit.used / accountInfo.net_limit.max)*100)
 
-            if (total_cpu_percentage == '-Infinity')
+            if (total_cpu_percentage == '-Infinity' || isNaN(total_net_percentage))
               total_cpu_percentage = 100
 
-            if (total_net_percentage == '-Infinity')
+            if (total_net_percentage == '-Infinity' || isNaN(total_net_percentage))
               total_net_percentage = 100
 
         }
