@@ -76,6 +76,13 @@ class TotalResources extends Component {
             // Displaying the percentage as resources still available instead of as resources currently used
             total_cpu_percentage = 100 - Math.floor((accountInfo.cpu_limit.used / accountInfo.cpu_limit.max)*100)
             total_net_percentage = 100 - Math.floor((accountInfo.net_limit.used / accountInfo.net_limit.max)*100)
+
+            if (total_cpu_percentage == '-Infinity')
+              total_cpu_percentage = 100
+
+            if (total_net_percentage == '-Infinity')
+              total_net_percentage = 100
+
         }
 
         if (accountInfo.self_delegated_bandwidth) {
