@@ -9,7 +9,7 @@ const Track = styled.div`
     width: 15em;
     height: 30px;
     
-    border: 1px solid #fff;
+    border: 1px solid #8DFFA9;
     border-radius: 10px;
     
     background-color: 'transparent',
@@ -19,7 +19,7 @@ const Thumb = styled.div`
     width: ${props => props.percentage}%;
     height: 100%;
     background-image: ${props => props.theme.backgroundImage};
-    border-radius: 8px;
+    border-radius: 9px;
     display: flex;
     transition: width: 0.3s ease-in-out;
 `;
