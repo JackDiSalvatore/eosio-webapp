@@ -4,6 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import { ThemeProvider } from 'styled-components';
+
+import ProgressBar from '../ProgressBar.js';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -34,6 +38,14 @@ const styles = theme => ({
   }
 });
 
+const CPUBarColor = {
+  backgroundImage: 'linear-gradient(270deg, #13A3FF 0%, #002C86 100%)',
+}
+
+const NETBarColor = {
+  backgroundImage: 'linear-gradient(270deg, #2BDB00 0%, #167000 100%)',
+}
+
 class TotalResources extends Component {
 
     constructor(props) {
@@ -52,10 +64,16 @@ class TotalResources extends Component {
         // Total Resources
         var totalResourcesCPU = 0.0000;
         var totalResourcesNET = 0.0000;
+
+        var total_cpu_percentage = 0
+        var total_net_percentage = 0
         
         if (accountInfo.total_resources) {
             totalResourcesCPU = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0]);
             totalResourcesNET = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0]);
+
+            total_cpu_percentage = Math.floor((accountInfo.cpu_limit.used / accountInfo.cpu_limit.max)*100)
+            total_net_percentage = Math.floor((accountInfo.net_limit.used / accountInfo.net_limit.max)*100)
         }
 
         if (accountInfo.self_delegated_bandwidth) {
@@ -68,15 +86,18 @@ class TotalResources extends Component {
           <Grid container direction="row" alignItems="center" justify="center" spacing={2}>
       
             <Grid item>
-            <Typography className={classes.bandwithTextStyle}>
+            {/* <Typography className={classes.bandwithTextStyle}>
                 Bandwidth
-              </Typography>
-              <Typography className={classes.textStyle}>
-                {Math.floor((accountInfo.cpu_limit.used / accountInfo.cpu_limit.max)*100)}%
-              </Typography>
-              <Typography className={classes.textStyle}>
-                {Math.floor((accountInfo.net_limit.used / accountInfo.net_limit.max)*100)}% 
-              </Typography>
+              </Typography> */}
+        
+              <ThemeProvider theme={CPUBarColor}>
+                <ProgressBar percentage={total_cpu_percentage} />
+              </ThemeProvider>
+
+              <ThemeProvider theme={NETBarColor}>
+                <ProgressBar percentage={total_net_percentage} />
+              </ThemeProvider>
+
             </Grid>
 
             <Grid item className={classes.itemStyle}>
