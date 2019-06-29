@@ -73,8 +73,9 @@ class TotalResources extends Component {
             totalResourcesCPU = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0]);
             totalResourcesNET = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0]);
 
-            total_cpu_percentage = Math.floor((accountInfo.cpu_limit.used / accountInfo.cpu_limit.max)*100)
-            total_net_percentage = Math.floor((accountInfo.net_limit.used / accountInfo.net_limit.max)*100)
+            // Displaying the percentage as resources still available instead of as resources currently used
+            total_cpu_percentage = 100 - Math.floor((accountInfo.cpu_limit.used / accountInfo.cpu_limit.max)*100)
+            total_net_percentage = 100 - Math.floor((accountInfo.net_limit.used / accountInfo.net_limit.max)*100)
         }
 
         if (accountInfo.self_delegated_bandwidth) {
