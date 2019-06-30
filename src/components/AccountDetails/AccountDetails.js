@@ -95,7 +95,7 @@ class AccountDetails extends Component {
             <Grid item className={classes.itemStyle}>
               <Grid
                 container
-                spacing={5}
+                spacing={1}
                 direction="row"
                 alignItems="center"
                 justify="center"
