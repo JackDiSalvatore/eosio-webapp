@@ -47,13 +47,16 @@ class AccountDetails extends Component {
 
     render() {
         //const { }
-        const { classes, accountInfo, rexBalance } = this.props;
+        const { classes, accountInfo, delband, rexBalance } = this.props;
        
          // Liquid Balance
         var eosBalanceLiquid = 0.0000
 
         // Resources
         var totalResources = 0.0000
+
+        // Resources Delegated to others
+        var totalResourcesDelegated = 0.0000
 
         // Refunding
         var totalRefund = 0.0000
@@ -71,6 +74,15 @@ class AccountDetails extends Component {
           totalResources = parseFloat(accountInfo.self_delegated_bandwidth.cpu_weight.split(' ')[0])
                            + parseFloat(accountInfo.self_delegated_bandwidth.net_weight.split(' ')[0])
 
+        if (delband) {
+          delband.map((el, idx) => {
+            if (el.to !== el.from) {
+              totalResourcesDelegated += ( parseFloat(el.cpu_weight.split(' ')[0])
+                                          + parseFloat(el.net_weight.split(' ')[0]) )
+            }
+          })
+        }
+
         if (accountInfo.refund_request)
           totalRefund = parseFloat(accountInfo.refund_request.cpu_amount.split(' ')[0])
                         + parseFloat(accountInfo.refund_request.net_amount.split(' ')[0])
@@ -78,7 +90,8 @@ class AccountDetails extends Component {
         // Total Balance
         var eosTotal =  eosBalanceLiquid 
                         + totalRefund 
-                        + totalResources 
+                        + totalResources
+                        + totalResourcesDelegated
                         + rexVoteStake
         
         return (
@@ -111,7 +124,7 @@ class AccountDetails extends Component {
                 </Grid>
 
                 <Grid item>
-                  <TotalResources accountInfo={accountInfo}></TotalResources>
+                  <TotalResources accountInfo={accountInfo} delband={delband}></TotalResources>
                 </Grid>
 
               </Grid>

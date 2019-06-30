@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { SetAccountAction } from '../../actions/SetAccountAction';
 import { SetChainInfoAction } from '../../actions/SetChainInfoAction';
 import { SetREXBalanceAction } from '../../actions/SetREXBalanceAction';
+import { SetdelbandAction } from '../../actions/SetdelbandAction';
 
 // Components
 import AccountDetails from '../../components/AccountDetails/AccountDetails';
@@ -59,6 +60,21 @@ class App extends Component {
         // CALL ACTION
         this.props.setUser(result)
       });
+
+      // get bandwidth delegated to other accounts
+      rpc.get_table_rows({
+        json: true,
+        code: 'eosio',                // contract who owns the table
+        scope: accountName,               // scope of the table
+        table: 'delband',              // name of the table as specified by the contract abi
+        limit: 1000,                    // Here we limit to 1 to get only the
+        reverse: false,               // Optional: Get reversed data
+        show_payer: false,            // Optional: Show ram payer
+       }).then(result => {
+         this.setState({ delband: result.rows })
+         // CALL ACTION
+         this.props.setdelbandAction(result.rows)
+       });
       
       // rpc.get_currency_balance('eosio.token', accountName, 'EOS').then(result => this.setState({ eosBalance: result}));
       rpc.get_table_rows({
@@ -86,14 +102,14 @@ class App extends Component {
 
   render() {
     const {  } = this.state;
-    const { classes, accountInfo, chainInfo, rexBalance } = this.props;
+    const { classes, accountInfo, chainInfo, delband, rexBalance } = this.props;
 
     return (
 
       <div className="App">
         <SearchAppBar chainId={chainInfo.chain_id} getAccountDetails={this.getAccountDetails.bind(this)}></SearchAppBar>
 
-        <AccountDetails accountInfo={accountInfo} rexBalance={rexBalance}></AccountDetails>
+        <AccountDetails accountInfo={accountInfo} delband={delband} rexBalance={rexBalance}></AccountDetails>
       </div>
 
     )
@@ -107,6 +123,7 @@ function mapStateToProps(state) {
     accountInfo: state.accountInfo,
     chainInfo: state.chainInfo,
     rexBalance: state.rexBalance,
+    delband: state.delband,
   }
 }
 
@@ -115,6 +132,7 @@ const mapDispatchToProps = (dispatch) => {
     setUser: (accountInfo) => { dispatch(SetAccountAction(accountInfo)) },
     setChainInfo: (chainInfo) => { dispatch(SetChainInfoAction(chainInfo)) },
     setREXBalance: (rexBalance) => { dispatch(SetREXBalanceAction(rexBalance)) },
+    setdelbandAction: (delband) => { dispatch(SetdelbandAction(delband)) },
   }
 };
 

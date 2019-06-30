@@ -56,7 +56,7 @@ class TotalResources extends Component {
 
     render() {
         //const { }
-        const { classes, accountInfo } = this.props;
+        const { classes, accountInfo, delband } = this.props;
 
         // Self Delegated Resources
         var selfResourcesCPU = 0.0000
@@ -68,6 +68,23 @@ class TotalResources extends Component {
 
         var total_cpu_percentage = 0
         var total_net_percentage = 0
+
+        // Resources Delegated to other accounts
+        var total_cpu_delegated = 0.0000
+        var total_net_delegated = 0.0000
+
+        delband.map((el, idx) => {
+          if (el.to !== el.from) {
+            total_cpu_delegated += parseFloat(el.cpu_weight.split(' ')[0])
+            total_net_delegated += parseFloat(el.net_weight.split(' ')[0])
+          }
+        })
+        total_cpu_delegated =  Math.floor(total_cpu_delegated * 10000) / 10000
+        total_net_delegated =  Math.floor(total_net_delegated * 10000) / 10000
+        // console.log('----------')
+        // console.log('total cpu = ' + total_cpu_delegated)
+        // console.log('total net = ' + total_net_delegated)
+        // console.log('----------')
         
         if (accountInfo.total_resources) {
             totalResourcesCPU = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0]);
@@ -157,10 +174,10 @@ class TotalResources extends Component {
                     Delegating
                   </Typography>
                   <Typography className={classes.textStyle}>
-                    <span> todo...</span>
+                    <span> {total_cpu_delegated} EOS</span>
                   </Typography>
                   <Typography className={classes.textStyle}>
-                    <span> todo...</span>
+                    <span> {total_net_delegated} EOS</span>
                   </Typography>
                 </Grid>
 
