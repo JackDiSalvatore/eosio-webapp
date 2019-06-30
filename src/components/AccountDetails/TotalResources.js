@@ -16,7 +16,7 @@ const styles = theme => ({
   bandwithTextStyle: {
     color: theme.palette.primary.contrastText,
     letterSpacing: '0.1em',
-    fontSize: 16,
+    // fontSize: 16,
   },
   headerTextStyle: {
     color: theme.palette.primary.contrastText,
@@ -107,7 +107,7 @@ class TotalResources extends Component {
           <Grid item container direction="column" justify="center" alignItems="flex-start" spacing={0} className={classes.root}>
 
             <Grid item>
-                <Typography className={classes.bandwithTextStyle} varient="h5">
+                <Typography className={classes.bandwithTextStyle}>
                   Bandwidth
                 </Typography>
             </Grid>
