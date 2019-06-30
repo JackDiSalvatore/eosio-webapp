@@ -3,17 +3,17 @@ import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+// import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
 import eosLogo from './eosLogo.png';
-import arrowIcon from'./arrow.png';
+// import arrowIcon from'./arrow.png';
 
 
 const styles = theme => ({
@@ -99,11 +99,6 @@ const styles = theme => ({
 // export default function SearchAppBar() 
 class SearchAppBar extends Component {
 
-  constructor(props) {
-    super(props)
-
-  }
-
   async handleFormEvent(event) {
     // stop default behaviour
     event.preventDefault();
@@ -112,7 +107,8 @@ class SearchAppBar extends Component {
   }
 
   render() {
-    const { classes, chainId } = this.props;
+    // const { classes, chainId } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -130,7 +126,7 @@ class SearchAppBar extends Component {
           <Grid item>
             <Grid container spacing={0} direction="column">
               <Grid item>
-                <img className={classes.eosLogo} src={eosLogo}/>
+                <img className={classes.eosLogo} src={eosLogo} alt={"not loaded"}/>
               </Grid>
 
               <Grid item>

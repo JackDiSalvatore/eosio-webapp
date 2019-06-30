@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { JsonRpc, RpcError } from 'eosjs';
+import { JsonRpc } from 'eosjs';
+// import { RpcError } from 'eosjs';
 
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
-
-// import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-//import TextField from '@material-ui/core/TextField';
-//import Paper from '@material-ui/core/Paper';
-//import Button from '@material-ui/core/Button';
 
 // Actions
 import { SetAccountAction } from '../../actions/SetAccountAction';
@@ -30,9 +24,7 @@ const mainNet = 'https://api.eosdetroit.io:443';
 const endpoint = mainNet;
 
 const styles = theme => ({
-  textStyle: {
-    color: theme.palette.secondary.contrastText,
-  },
+
 });
 
 class App extends Component {
@@ -101,8 +93,8 @@ class App extends Component {
   }
 
   render() {
-    const {  } = this.state;
-    const { classes, accountInfo, chainInfo, delband, rexBalance } = this.props;
+    // const {  } = this.state;
+    const { accountInfo, chainInfo, delband, rexBalance } = this.props;
 
     return (
 

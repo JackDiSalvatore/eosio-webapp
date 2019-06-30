@@ -22,11 +22,6 @@ const styles = theme => ({
 
 class LiquidBalance extends Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         //const { }
         const { classes, eosBalanceLiquid } = this.props;

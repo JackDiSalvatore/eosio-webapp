@@ -31,11 +31,6 @@ const styles = theme => ({
 
 class RAM extends Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         //const { }
         const { classes, accountInfo } = this.props;

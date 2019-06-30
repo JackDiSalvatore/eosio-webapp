@@ -22,11 +22,6 @@ const styles = theme => ({
 
 class Permissions extends Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-    
     componentDidMount() {
       // console.log('Permissions mounted')
     }
@@ -38,15 +33,17 @@ class Permissions extends Component {
         let permissions = accountInfo.permissions
         var permissionsHierarchy = 0
 
+        var permissionsComponent = 0
+
         // console.log(accountInfo.permissions)
         if(accountInfo.permissions) { 
 
-          var items = [
-            {"Id": "1", "perm_name": "owner",      "parent": ""},
-            {"Id": "2", "perm_name": "active",     "parent": "owner"},
-            {"Id": "3", "perm_name": "newaccount", "parent": "chestnut"},
-            {"Id": "4", "perm_name": "chestnut",   "parent": "owner"},
-          ];
+          // var items = [
+          //   {"Id": "1", "perm_name": "owner",      "parent": ""},
+          //   {"Id": "2", "perm_name": "active",     "parent": "owner"},
+          //   {"Id": "3", "perm_name": "newaccount", "parent": "chestnut"},
+          //   {"Id": "4", "perm_name": "chestnut",   "parent": "owner"},
+          // ];
         
           function buildHierarchy(arry) {
           
@@ -65,15 +62,15 @@ class Permissions extends Component {
               var findChildren = function(parent) {
                   if (children[parent.value.perm_name]) {
                       parent.children = children[parent.value.perm_name];
-                      for (var i = 0, len = parent.children.length; i < len; ++i) {
-                          findChildren(parent.children[i]);
+                      for (var j = 0, len = parent.children.length; j < len; ++j) {
+                          findChildren(parent.children[j]);
                       }
                   }
               };
           
               // enumerate through to handle the case where there are multiple roots
-              for (var i = 0, len = roots.length; i < len; ++i) {
-                  findChildren(roots[i]);
+              for (var k = 0, rootlen = roots.length; k < rootlen; ++k) {
+                  findChildren(roots[k]);
               }
           
               return roots;
@@ -87,12 +84,12 @@ class Permissions extends Component {
 
         // console.log(permissions[0].value)
         if (permissionsHierarchy) {
-          var permissionsComponent = 
+          permissionsComponent = 
     
           <PermissionsList options={permissions}/>
 
         } else {
-          var permissionsComponent = 
+          permissionsComponent = 
             <Typography className={classes.textStyle}>
               permissions loading
             </Typography>

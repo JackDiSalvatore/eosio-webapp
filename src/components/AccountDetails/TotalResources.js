@@ -49,11 +49,6 @@ const NETBarColor = {
 
 class TotalResources extends Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         //const { }
         const { classes, accountInfo, delband } = this.props;
@@ -78,6 +73,7 @@ class TotalResources extends Component {
             total_cpu_delegated += parseFloat(el.cpu_weight.split(' ')[0])
             total_net_delegated += parseFloat(el.net_weight.split(' ')[0])
           }
+          return 0
         })
         total_cpu_delegated =  Math.floor(total_cpu_delegated * 10000) / 10000
         total_net_delegated =  Math.floor(total_net_delegated * 10000) / 10000

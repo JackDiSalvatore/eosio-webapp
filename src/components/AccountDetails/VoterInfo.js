@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
@@ -43,11 +42,6 @@ const styles = theme => ({
 });
 
 class VoterInfo extends Component {
-
-    constructor(props) {
-        super(props)
-
-    }
 
     render() {
         //const { }

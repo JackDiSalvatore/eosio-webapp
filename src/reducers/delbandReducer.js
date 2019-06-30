@@ -17,6 +17,9 @@ export default function(state = initialState, action) {
         // return Object.assign({}, state, action.payload)
         return action.payload
       }
+      default: {
+        break
+      }
     }
   
     return state;

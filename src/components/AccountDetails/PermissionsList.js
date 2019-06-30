@@ -46,11 +46,6 @@ const styles = theme => ({
 
 class PermissionsList extends Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
 
         const { classes, options } = this.props;

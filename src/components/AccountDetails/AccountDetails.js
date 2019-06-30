@@ -11,7 +11,6 @@ import RAM from './RAM';
 import REXBalance from './REXBalance';
 import TotalResources from './TotalResources';
 import VoterInfo from './VoterInfo';
-import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
     root: {
@@ -39,11 +38,6 @@ const styles = theme => ({
   
 
 class AccountDetails extends Component {
-
-    constructor(props) {
-        super(props)
-
-    }
 
     render() {
         //const { }
@@ -75,11 +69,12 @@ class AccountDetails extends Component {
                            + parseFloat(accountInfo.self_delegated_bandwidth.net_weight.split(' ')[0])
 
         if (delband) {
-          delband.map((el, idx) => {
+          delband.map((el) => {
             if (el.to !== el.from) {
               totalResourcesDelegated += ( parseFloat(el.cpu_weight.split(' ')[0])
                                           + parseFloat(el.net_weight.split(' ')[0]) )
             }
+            return 0
           })
         }
 

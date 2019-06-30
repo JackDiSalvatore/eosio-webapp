@@ -19,23 +19,18 @@ const styles = theme => ({
 
 class REXBalance extends Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         //const { }
         const { classes, accountInfo, rexBalance } = this.props;
 
         var rexVoteStake = '0.0000 EOS'
         var rex_balance = '0.0000 REX'
-        var rexMatured = 0
+        // var rexMatured = 0
 
         if (rexBalance.owner === accountInfo.account_name) {
           rexVoteStake = rexBalance.vote_stake
           rex_balance = rexBalance.rex_balance
-          rexMatured = rexBalance.matured_rex
+          // rexMatured = rexBalance.matured_rex
         }
 
 

@@ -22,11 +22,6 @@ const styles = theme => ({
 
 class AccountName extends Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-
     render() {
         //const { }
         const { classes, accountInfo, eosTotal } = this.props;
