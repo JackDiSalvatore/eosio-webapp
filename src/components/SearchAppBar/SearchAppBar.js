@@ -12,6 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 // import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+import SelectChain from './SelectChain';
+
 import eosLogo from './eosLogo.png';
 // import arrowIcon from'./arrow.png';
 
@@ -137,9 +139,10 @@ class SearchAppBar extends Component {
             </Grid>
           </Grid>
 
-          {/* <Grid item>
-            <img className={classes.arrowIcon} src={arrowIcon}/>
-          </Grid> */}
+          <Grid item>
+            {/* <img className={classes.arrowIcon} src={arrowIcon}/> */}
+            <SelectChain setChainFunction={this.props.setChain}></SelectChain>
+          </Grid>
 
           <Grid item>
 

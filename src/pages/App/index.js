@@ -7,6 +7,7 @@ import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 
 // Actions
+import { SetEndpointAction } from '../../actions/SetEndpointAction';
 import { SetAccountAction } from '../../actions/SetAccountAction';
 import { SetChainInfoAction } from '../../actions/SetChainInfoAction';
 import { SetREXBalanceAction } from '../../actions/SetREXBalanceAction';
@@ -19,9 +20,10 @@ import SearchAppBar from '../../components/SearchAppBar/SearchAppBar';
 // Endpoints;
 //const localNet = 'http://localhost:888';
 //const jungleTestNet = 'https://jungle2.cryptolions.io:443'
-const mainNet = 'https://api.eosdetroit.io:443';
+// const mainNet = 'https://api.eosdetroit.io:443';
+const mainNetHistory = 'https://public.eosinfra.io';
 //const mainNetBackup = 'http://api.cypherglass.com:8888';
-const endpoint = mainNet;
+// const endpoint = mainNetHistory;
 
 const styles = theme => ({
 
@@ -37,16 +39,22 @@ class App extends Component {
 
   }
 
+  async setChain(chainEndpoint) {
+    const rpc = new JsonRpc(chainEndpoint, { fetch });
+
+    this.props.setEndpoint(chainEndpoint)
+
+    rpc.get_info().then(result => {
+      this.setState({chainInfo: result})
+      // CALL ACTION
+      this.props.setChainInfo(result)
+    })
+  }
+
   async getAccountDetails(accountName) {
-    const rpc = new JsonRpc(endpoint, { fetch });
+    const rpc = new JsonRpc(this.props.endpoint, { fetch });
     console.log('Account Name is ' + accountName);
     try {
-      rpc.get_info().then(result => {
-        this.setState({chainInfo: result})
-        // CALL ACTION
-        this.props.setChainInfo(result)
-      })
-
       rpc.get_account(accountName).then(result => {
         this.setState({accountInfo: result})
         // CALL ACTION
@@ -89,7 +97,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getAccountDetails('eos');
+    this.setChain(mainNetHistory)
+    this.getAccountDetails('chintailease');
   }
 
   render() {
@@ -99,7 +108,7 @@ class App extends Component {
     return (
 
       <div className="App">
-        <SearchAppBar chainId={chainInfo.chain_id} getAccountDetails={this.getAccountDetails.bind(this)}></SearchAppBar>
+        <SearchAppBar chainId={chainInfo.chain_id} setChain={this.setChain.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}></SearchAppBar>
 
         <AccountDetails accountInfo={accountInfo} delband={delband} rexBalance={rexBalance}></AccountDetails>
       </div>
@@ -112,6 +121,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
+    endpoint: state.endpoint,
     accountInfo: state.accountInfo,
     chainInfo: state.chainInfo,
     rexBalance: state.rexBalance,
@@ -121,6 +131,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setEndpoint: (endpoint) => { dispatch(SetEndpointAction(endpoint)) },
     setUser: (accountInfo) => { dispatch(SetAccountAction(accountInfo)) },
     setChainInfo: (chainInfo) => { dispatch(SetChainInfoAction(chainInfo)) },
     setREXBalance: (rexBalance) => { dispatch(SetREXBalanceAction(rexBalance)) },
