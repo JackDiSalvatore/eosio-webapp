@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
@@ -18,6 +19,16 @@ const styles = theme => ({
     // marginLeft: '25px',
   }
 });
+
+const HtmlTooltip = withStyles(theme => ({
+  tooltip: {
+    backgroundColor: '#979797',
+    color: theme.palette.primary.contrastText,
+    // maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    // border: '1px solid #dadde9',
+  },
+}))(Tooltip);
 
 
 class RefundRequest extends Component {
@@ -36,8 +47,10 @@ class RefundRequest extends Component {
           // requestTime = accountInfo.refund_request.request_time
           refundRequestCPU = accountInfo.refund_request.cpu_amount
           refundRequestNET = accountInfo.refund_request.net_amount
-          totalRefund = parseFloat(refundRequestCPU.split(' ')[0])
+          totalRefund = Math.floor(
+                        ( parseFloat(refundRequestCPU.split(' ')[0])
                         + parseFloat(refundRequestNET.split(' ')[0])
+                        ) * 10000) / 10000
         }
 
         return (
@@ -49,17 +62,23 @@ class RefundRequest extends Component {
             </Grid>
     
             <Grid item className={classes.itemStyle}>
-              <Typography className={classes.textStyle}>
-                {totalRefund}
-              </Typography>
+              <HtmlTooltip title={
+                <React.Fragment>
+                  <Typography>
+                    CPU: {refundRequestCPU}
+                  </Typography>
+                  <Typography>
+                    NET: {refundRequestNET}
+                  </Typography>
+                </React.Fragment>
+                } placement="bottom">
+
+                <Typography className={classes.textStyle}>
+                  {totalRefund}
+                </Typography>
+
+              </HtmlTooltip>
             </Grid>
-    
-            {/* <Grid item>
-              <Typography style={{fontSize:12}} className={classes.textStyle}>
-                {refundRequestCPU} CPU / {refundRequestNET} NET
-                <span> {requestTime}</span>
-              </Typography>
-            </Grid> */}
           </Grid>
         )
     }

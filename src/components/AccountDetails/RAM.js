@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
@@ -28,6 +29,16 @@ const styles = theme => ({
     // boxShadow: '0 0 8px 1px #9200A5',
   },
 });
+
+const HtmlTooltip = withStyles(theme => ({
+  tooltip: {
+    backgroundColor: '#979797',
+    color: theme.palette.primary.contrastText,
+    // maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    // border: '1px solid #dadde9',
+  },
+}))(Tooltip);
 
 class RAM extends Component {
 
@@ -56,20 +67,25 @@ class RAM extends Component {
                     textSize: '16px',
                   })}
               >
-                <Typography className={classes.textStyle} variant="h6">
-                  {percentage}%
-                </Typography>
+                <HtmlTooltip title={
+                  <React.Fragment>
+                    <Typography>
+                      {accountInfo.ram_usage} Bytes / { + accountInfo.ram_quota} Bytes
+                    </Typography>
+                  </React.Fragment>
+                  } placement="top">
+
+                  <Typography className={classes.textStyle} variant="h6">
+                    {percentage}%
+                  </Typography>
+
+                </HtmlTooltip>
+
                 <Typography className={classes.specialTextStyle} variant="h5">
                   RAM
                 </Typography>
               </CircularProgressbarWithChildren>;
             </Grid>
-
-            {/* <Grid item>
-              <Typography style={{fontSize:12}} variant="body1" gutterBottom>
-                <span>{accountInfo.ram_usage} / { + accountInfo.ram_quota} Bytes</span>
-              </Typography>
-            </Grid> */}
 
           </Grid>
         )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import { ThemeProvider } from 'styled-components';
@@ -46,6 +47,17 @@ const CPUBarColor = {
 const NETBarColor = {
   backgroundImage: 'linear-gradient(270deg, #2BDB00 0%, #167000 100%)',
 }
+
+const HtmlTooltip = withStyles(theme => ({
+  tooltip: {
+    backgroundColor: '#979797',
+    color: theme.palette.primary.contrastText,
+    // maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    // border: '1px solid #dadde9',
+  },
+}))(Tooltip);
+
 
 class TotalResources extends Component {
 
@@ -117,10 +129,7 @@ class TotalResources extends Component {
               <Grid container direction="row" alignItems="center" justify="center" spacing={2}>
           
                 <Grid item>
-                {/* <Typography className={classes.bandwithTextStyle}>
-                    Bandwidth
-                  </Typography> */}
-            
+                  
                   <ThemeProvider theme={CPUBarColor}>
                     <ProgressBar percentage={total_cpu_percentage} />
                   </ThemeProvider>
@@ -132,13 +141,34 @@ class TotalResources extends Component {
                 </Grid>
 
                 <Grid item className={classes.itemStyle}>
-                  <Typography className={classes.specialTextStyle} variant="h5">
-                    CPU
-                  </Typography>
 
-                  <Typography className={classes.specialTextStyle} variant="h5">
-                    NET
-                  </Typography>
+                  <HtmlTooltip title={
+                    <React.Fragment>
+                      <Typography>
+                        { (accountInfo.cpu_limit.available / 1000000) } Seconds
+                      </Typography>
+                    </React.Fragment>
+                    } placement="top">
+
+                    <Typography className={classes.specialTextStyle} variant="h5">
+                      CPU
+                    </Typography>
+
+                  </HtmlTooltip>
+
+                  <HtmlTooltip title={
+                    <React.Fragment>
+                      <Typography>
+                        {accountInfo.net_limit.available} Bytes
+                      </Typography>
+                    </React.Fragment>
+                    } placement="bottom">
+
+                    <Typography className={classes.specialTextStyle} variant="h5">
+                      NET
+                    </Typography>
+
+                  </HtmlTooltip>
                 </Grid>
 
                 <Grid item style={{textAlign:'left'}}>
