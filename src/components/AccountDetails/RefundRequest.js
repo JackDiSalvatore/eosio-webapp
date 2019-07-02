@@ -38,13 +38,13 @@ class RefundRequest extends Component {
         const { classes, accountInfo } = this.props;
 
         // Refunding
-        // var requestTime = null;
+        var requestTime = null;
         var refundRequestCPU = '0.0000 EOS';
         var refundRequestNET = '0.0000 EOS';
         var totalRefund = '0.0000 EOS';
 
         if (accountInfo.refund_request) {
-          // requestTime = accountInfo.refund_request.request_time
+          requestTime = accountInfo.refund_request.request_time
           refundRequestCPU = accountInfo.refund_request.cpu_amount
           refundRequestNET = accountInfo.refund_request.net_amount
           totalRefund = Math.floor(
@@ -69,6 +69,9 @@ class RefundRequest extends Component {
                   </Typography>
                   <Typography>
                     NET: {refundRequestNET}
+                  </Typography>
+                  <Typography>
+                    Requested: {requestTime}
                   </Typography>
                 </React.Fragment>
                 } placement="bottom">
