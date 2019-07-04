@@ -28,8 +28,20 @@ const styles = theme => ({
   gridStyles: {
     // border: '2px solid purple',
   },
-  menuButton: {
+  button: {
     marginRight: theme.spacing(2),
+    backgroundColor: theme.palette.primary.contrastText,
+    color: theme.palette.primary.main,
+    letterSpacing: '0.2em',
+    paddingLeft: '2.5em',
+    paddingRight: '2.5em',
+    borderRadius: '10px',
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.10),
+      color: theme.palette.primary.contrastText,
+      border: '1px solid ' + theme.palette.primary.contrastText,
+      borderRadius: '10px', 
+    },
   },
   title: {
     flexGrow: 1,
@@ -101,6 +113,10 @@ const styles = theme => ({
 // export default function SearchAppBar() 
 class SearchAppBar extends Component {
 
+  async login() {
+    this.props.attachScatter()
+  }
+
   async handleFormEvent(event) {
     // stop default behaviour
     event.preventDefault();
@@ -112,69 +128,110 @@ class SearchAppBar extends Component {
     // const { classes, chainId } = this.props;
     const { classes } = this.props;
 
-    return (
-      <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar className={classes.toolbarStyles}>
+    var LoginComponent = 0
 
+    // console.log('EOSIO')
+    // console.log(this.props.eosio)
+    if (!this.props.eosio) {
+      LoginComponent =
         <Grid container
-            spacing={0}
-            direction="row"
-            justify="flex-start"
-            alignItems="center"
-            className={classes.gridStyles}
-          >
-
-          <Grid item>
-            <Grid container spacing={0} direction="column">
-              <Grid item>
-                <img className={classes.eosLogo} src={eosLogo} alt={"not loaded"}/>
-              </Grid>
-
-              <Grid item>
-                <Typography className={classes.eosTicker}>
-                  EOS
-                </Typography>
-              </Grid>
-            </Grid>
-          </Grid>
+        spacing={2}
+        direction="row"
+        justify="center"
+        alignItems="center"
+        // className={classes.gridStyles}
+        >
 
           <Grid item>
             {/* <img className={classes.arrowIcon} src={arrowIcon}/> */}
             <SelectChain setChainFunction={this.props.setChain}></SelectChain>
           </Grid>
-
+          
           <Grid item>
-
-          <form onSubmit={this.handleFormEvent.bind(this)} >
-            <div className={classes.search}>
-            
-              <Button className={classes.searchIcon} type="submit">
-                <SearchIcon />
-              </Button>
-              
-              <InputBase
-                name="accountNameSearch"
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'Search' }}
-              />
-              
-            </div>
-          </form>
-
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              onClick={this.login.bind(this)}
+            >
+              Login
+            </Button>
           </Grid>
 
-          {/* <Grid item>
-            <Typography>
-              {chainId}
-            </Typography>
-          </Grid> */}
-
         </Grid>
+    } else {
+      LoginComponent = 
+        <Typography className={classes.textStyle}>
+          Logged In As
+        </Typography>
+    }
+
+    return (
+      <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar className={classes.toolbarStyles}>
+          
+          <Grid container
+            spacing={2}
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+            className={classes.gridStyles}
+          >
+
+            <Grid item>
+              <Grid container
+                spacing={2}
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+                className={classes.gridStyles}
+              >
+
+                <Grid item>
+                  <Grid container spacing={0} direction="column">
+                    <Grid item>
+                      <img className={classes.eosLogo} src={eosLogo} alt={"not loaded"}/>
+                    </Grid>
+
+                    <Grid item>
+                      <Typography className={classes.eosTicker}>
+                        EOS
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+
+                <Grid item>
+                  <form onSubmit={this.handleFormEvent.bind(this)} >
+                    <div className={classes.search}>
+                    
+                      <Button className={classes.searchIcon} type="submit">
+                        <SearchIcon />
+                      </Button>
+                      
+                      <InputBase
+                        name="accountNameSearch"
+                        placeholder="Search…"
+                        classes={{
+                          root: classes.inputRoot,
+                          input: classes.inputInput,
+                        }}
+                        inputProps={{ 'aria-label': 'Search' }}
+                      />
+                      
+                    </div>
+                  </form>
+                </Grid>
+
+              </Grid>
+            </Grid>
+
+            <Grid item>
+            { LoginComponent }
+            </Grid>
+
+          </Grid>
 
         </Toolbar>
       </AppBar>

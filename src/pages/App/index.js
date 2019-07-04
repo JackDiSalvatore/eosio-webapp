@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { JsonRpc } from 'eosjs';
 // import { RpcError } from 'eosjs';
 
+// Scatter
+import EOSIOClient from "../../utils/eosio-client";
+
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -18,12 +21,8 @@ import AccountDetails from '../../components/AccountDetails/AccountDetails';
 import SearchAppBar from '../../components/SearchAppBar/SearchAppBar';
 
 // Endpoints;
-//const localNet = 'http://localhost:888';
-//const jungleTestNet = 'https://jungle2.cryptolions.io:443'
-// const mainNet = 'https://api.eosdetroit.io:443';
-const mainNetHistory = 'https://public.eosinfra.io';
+const mainNetHistory = 'https://public.eosinfra.io:443';
 //const mainNetBackup = 'http://api.cypherglass.com:8888';
-// const endpoint = mainNetHistory;
 
 const styles = theme => ({
 
@@ -37,7 +36,13 @@ class App extends Component {
 
     }
 
+    this.eosio = null// new EOSIOClient("AppNameHere");
+    
   }
+
+  attachScatter = () => {
+    this.eosio = new EOSIOClient("AppNameHere", this.props.endpoint, this.props.chainInfo)
+  };
 
   async setChain(chainEndpoint) {
     const rpc = new JsonRpc(chainEndpoint, { fetch });
@@ -108,7 +113,14 @@ class App extends Component {
     return (
 
       <div className="App">
-        <SearchAppBar chainId={chainInfo.chain_id} setChain={this.setChain.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}></SearchAppBar>
+        <SearchAppBar
+          chainId={chainInfo.chain_id}
+          setChain={this.setChain.bind(this)}
+          getAccountDetails={this.getAccountDetails.bind(this)}
+          attachScatter={this.attachScatter.bind(this)}
+          eosio={this.eosio}
+
+        ></SearchAppBar>
 
         <AccountDetails accountInfo={accountInfo} delband={delband} rexBalance={rexBalance}></AccountDetails>
       </div>
