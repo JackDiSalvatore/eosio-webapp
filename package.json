@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.0.2",
     "@material-ui/icons": "^4.0.1",
+    "@scatterjs/core": "^2.7.26",
+    "@scatterjs/eosjs2": "^1.5.8",
     "eosjs": "^20.0.0",
     "react": "^16.8.6",
     "react-circular-progressbar": "^2.0.1",
