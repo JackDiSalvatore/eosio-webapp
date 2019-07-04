@@ -16,7 +16,7 @@ const BootstrapInput = withStyles(theme => ({
   },
   input: {
     borderColor: theme.palette.primary.contrastText,
-    borderRadius: 4,
+    borderRadius: '10px',
     position: 'relative',
     color: theme.palette.primary.contrastText,
     backgroundColor: 'transparent',
@@ -39,7 +39,7 @@ const BootstrapInput = withStyles(theme => ({
       '"Segoe UI Symbol"',
     ].join(','),
     '&:focus': {
-      borderRadius: 4,
+      borderRadius: '10px',
       // borderColor: theme.palette.primary.contrastText,
       boxShadow: '0 0 0 0.2rem rgba(141,255,169,.25)',
     },
@@ -63,8 +63,9 @@ export default function CustomizedSelects(setChain) {
   // Endpoints
   // const localNet = 'http://localhost:888'
   const jungleTestNet = 'https://jungle2.cryptolions.io:443'
+  // const jungleTestNet = 'https://junglehistory.cryptolions.io:80'
   // const mainNet = 'https://api.eosdetroit.io:443'
-  const mainNetHistory = 'https://public.eosinfra.io'
+  const mainNetHistory = 'https://public.eosinfra.io:443'
   // const mainNetBackup = 'http://api.cypherglass.com:8888'
 
   const handleChange = event => {
