@@ -132,7 +132,7 @@ class SearchAppBar extends Component {
 
     // console.log('EOSIO')
     // console.log(this.props.eosio)
-    if (!this.props.eosio) {
+    if (1) {
       LoginComponent =
         <Grid container
         spacing={2}
